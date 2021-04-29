@@ -1,9 +1,10 @@
 import { Table, Space } from "antd";
 import { Button } from "antd";
-import { DeleteFilled } from "@ant-design/icons";
+import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
 import styles from "../TableComponent/Table.less";
-import { IFormData } from "../Modal/ModalComponent";
+import { IFormData } from "../Modal/ModalComponent/ModalComponent";
 import { ReactElement, useState } from "react";
+import { AddModal } from "../Modal/AddModal/AddModal";
 import React from "react";
 
 interface TableProps {
@@ -39,14 +40,12 @@ export const TableComponent = (props: TableProps) => {
         date: "Дата",
         spent: "Потрачено",
         actions: (
-          <>
-            <Button className={styles.deleteButton} type="link">
-              sddsa
-            </Button>
+          <Space size="small">
             <Button className={styles.deleteButton} type="link">
               <DeleteFilled />
             </Button>
-          </>
+            <AddModal />
+          </Space>
         ),
         children: [],
       };
@@ -88,13 +87,7 @@ export const TableComponent = (props: TableProps) => {
     {
       dataIndex: "actions",
       key: "actions",
-      width: "5%",
-      render: () => (
-        <Space size="middle">
-          <a>Delete</a>
-          <a>Invite </a>
-        </Space>
-      ),
+      width: "1%",
     },
   ];
 

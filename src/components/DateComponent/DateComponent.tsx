@@ -6,7 +6,7 @@ export const DateComponent = () => {
   return (
     <div>
       <Space direction="vertical">
-        <DatePicker className={styles.date} placeholder = "Введите дату"/>
+        <DatePicker className={styles.date} placeholder = "Дата"/>
       </Space>
     </div>
   );

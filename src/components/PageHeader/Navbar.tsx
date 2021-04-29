@@ -1,5 +1,5 @@
 import React from "react";
-import { IFormData, ModalComponent, } from "../Modal/ModalComponent";
+import { IFormData, ModalComponent, } from "../Modal/ModalComponent/ModalComponent";
 import styles from "../PageHeader/Navbar.less";
 import { PageHeader } from "antd";
 

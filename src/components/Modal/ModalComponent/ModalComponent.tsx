@@ -1,9 +1,9 @@
 import { Fragment, useState } from "react";
-import styles from "../Modal/ModalComponent.less";
+import styles from "../ModalComponent/ModalComponent.less";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
-import { ITableGroupElement } from '../TableComponent/Table'
-import { DateComponent } from "../DateComponent/DateComponent";
+import { ITableGroupElement } from "../../TableComponent/Table";
+import { DateComponent } from "../../DateComponent/DateComponent";
 import React from "react";
 
 export interface IFormElementData {
@@ -20,7 +20,6 @@ interface ModalComponentProps {
 }
 
 export function ModalComponent(props: ModalComponentProps) {
-
   const [visible, setVisible] = useState(false);
 
   const showModal = () => {
@@ -29,6 +28,7 @@ export function ModalComponent(props: ModalComponentProps) {
 
   const onFinish = (values: IFormData) => {
     props.onCreateElement(values);
+    setVisible(false);
   };
 
   const handleOk = () => {
@@ -36,43 +36,43 @@ export function ModalComponent(props: ModalComponentProps) {
   };
 
   const handleCancel = () => {
-
     setVisible(false);
   };
   return (
     <div>
-      <Button className={styles.modalButton} type="text" onClick={showModal}>
-        <p>
-          <b> Добавить расходы</b>{" "}
-          <PlusOutlined className={styles.buttonPlus} />
-        </p>
+      <Button icon={<PlusOutlined />} className={styles.modalButton} type="text" onClick={showModal}>
+            Добавить 
       </Button>
 
       <Modal
+        onCancel={handleCancel}
         destroyOnClose={true}
         visible={visible}
-        title="Введите данных о расходах"
-        footer={[]}
+        title="Добавить категорию"
+        footer={false}
       >
         <Form onFinish={onFinish}>
-          <Form.Item name="category">
-            <Input placeholder="Введите категорию" />
-          </Form.Item>
-          <Form.Item name="namePlace">
-            <Input placeholder="Введите название заведения" />
-          </Form.Item>
-          <Form.Item name="date">
-            <DateComponent />
-          </Form.Item>
-          <Form.Item name="cost">
-            <Input placeholder="Введите колличество потраченых денег в рублях" />
+          <Form.Item
+            name="category"
+            rules={[{ required: true, message: "Please input your username!" }]}
+          >
+            <Input placeholder="Название категории" />
           </Form.Item>
           <Form.Item>
             <Fragment>
-              <Button type="primary" htmlType="submit" onClick={handleOk}>
-                Submit
+              <Button
+                className={styles.okButton}
+                type="primary"
+                htmlType="submit"
+                onClick={handleOk}
+              >
+                Ok
               </Button>
-              <Button htmlType="button" onClick={handleCancel}>
+              <Button
+                className={styles.cancelButton}
+                htmlType="button"
+                onClick={handleCancel}
+              >
                 Cancel
               </Button>
             </Fragment>

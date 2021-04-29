@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "antd/dist/antd.css";
 import { Navbar } from "./components/PageHeader/Navbar";
 import { TableComponent } from "./components/TableComponent/Table";
-import { IFormData } from './components/Modal/ModalComponent'
+import { IFormData } from './components/Modal/ModalComponent/ModalComponent'
 
 function App() {
   const dataSource: Array<IFormData>= [
