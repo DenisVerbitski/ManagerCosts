@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import styles from "../ModalComponent/ModalComponent.less";
+import styles from "./CategoryModal.less";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
 import FormCategory from "./interfaces/FormCategory";
