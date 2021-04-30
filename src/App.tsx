@@ -13,7 +13,7 @@ function App() {
     setData([...data, values]);
   };
   const handleDeleteCategory = (index: number) => {
-    setData(data.splice(index, 1));
+    setData([...data.slice(0, index), ...data.slice(index + 1)]);
   };
 
   const handleAddItem = (indexCat: number, item: FormItem) => {
@@ -21,7 +21,7 @@ function App() {
     setData(data);
   };
   const handleDeleteItem = (indexCat: number, indexItem: number) => {
-    data[indexCat].children = data[indexCat].children.splice(indexItem, 1);
+    data[indexCat].children.splice(indexItem, 1);
     setData(data);
   };
 
