@@ -18,11 +18,11 @@ function App() {
 
   const handleAddItem = (indexCat: number, item: FormItem) => {
     data[indexCat].children.push(item);
-    setData(data);
+    setData([...data]);
   };
   const handleDeleteItem = (indexCat: number, indexItem: number) => {
     data[indexCat].children.splice(indexItem, 1);
-    setData(data);
+    setData([...data]);
   };
 
   return (
