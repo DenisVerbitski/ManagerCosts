@@ -2,19 +2,18 @@ import { Fragment, useState } from "react";
 import styles from "../ModalComponent/ModalComponent.less";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
-import { ITableGroupElement } from "../../TableComponent/Table";
-import { DateComponent } from "../../DateComponent/DateComponent";
-import React from "react";
 
 export interface IFormElementData {
   name: string;
   date: string;
   spent: string;
 }
+
 export interface IFormData {
   category: string;
   children: Array<IFormElementData>;
 }
+
 interface ModalComponentProps {
   onCreateElement: (values: IFormData) => void;
 }
@@ -38,10 +37,16 @@ export function ModalComponent(props: ModalComponentProps) {
   const handleCancel = () => {
     setVisible(false);
   };
+
   return (
     <div>
-      <Button icon={<PlusOutlined />} className={styles.modalButton} type="text" onClick={showModal}>
-            Добавить 
+      <Button
+        icon={<PlusOutlined />}
+        className={styles.modalButton}
+        type="text"
+        onClick={showModal}
+      >
+        Добавить
       </Button>
 
       <Modal
@@ -54,7 +59,9 @@ export function ModalComponent(props: ModalComponentProps) {
         <Form onFinish={onFinish}>
           <Form.Item
             name="category"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[
+              { required: true, message: "Пожалуйста введите категорию" },
+            ]}
           >
             <Input placeholder="Название категории" />
           </Form.Item>

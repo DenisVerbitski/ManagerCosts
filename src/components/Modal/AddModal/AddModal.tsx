@@ -1,16 +1,24 @@
 import styles from "../AddModal/AddModal.less";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
-import React, { Fragment, useState } from "react";
-import { DateComponent } from "../../DateComponent/DateComponent";
+import { Fragment, useState } from "react";
+import { DatePicker, Space } from "antd";
+import { IFormElementData } from "../ModalComponent/ModalComponent";
 
-export const AddModal = () => {
+interface AddModalProps {
+  index: number;
+  onAddItem: (index: number, element: IFormElementData) => void;
+}
+export const AddModal = (props: AddModalProps) => {
   const [visible, setVisible] = useState(false);
 
   const showModal = () => {
     setVisible(true);
   };
-
+  const onFinish = (values: IFormElementData) => {
+    props.onAddItem(props.index, values);
+    setVisible(false);
+  };
   const handleOk = () => {
     setVisible(false);
   };
@@ -32,14 +40,40 @@ export const AddModal = () => {
         footer={false}
         title="Введите данных о расходах"
       >
-        <Form>
-          <Form.Item name="namePlace">
+        <Form onFinish={onFinish}>
+          <Form.Item
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: "Пожалуйста введите название заведения",
+              },
+            ]}
+          >
             <Input placeholder="Название заведения" />
           </Form.Item>
-          <Form.Item name="date">
-            <DateComponent />
+          <Form.Item
+            name="date"
+            rules={[
+              {
+                required: true,
+                message: "Пожалуйста дату",
+              },
+            ]}
+          >
+            <Space direction="vertical">
+              <DatePicker className={styles.date} placeholder="Дата" />
+            </Space>
           </Form.Item>
-          <Form.Item name="cost">
+          <Form.Item
+            name="spent"
+            rules={[
+              {
+                required: true,
+                message: "Пожалуйста введите колличество потраченых денег",
+              },
+            ]}
+          >
             <Input placeholder="Колличество потраченых денег в рублях" />
           </Form.Item>
           <Form.Item>

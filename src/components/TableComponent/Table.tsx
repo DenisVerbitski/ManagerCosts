@@ -2,13 +2,14 @@ import { Table, Space } from "antd";
 import { Button } from "antd";
 import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
 import styles from "../TableComponent/Table.less";
-import { IFormData } from "../Modal/ModalComponent/ModalComponent";
+import { IFormData, IFormElementData } from "../Modal/ModalComponent/ModalComponent";
 import { ReactElement, useState } from "react";
 import { AddModal } from "../Modal/AddModal/AddModal";
 import React from "react";
 
 interface TableProps {
   data: Array<IFormData>;
+  onAddItem: (index: number, element: IFormElementData) => void;
 }
 export interface ITableGroupElement {
   key: number;
@@ -27,9 +28,11 @@ interface ITableElement {
 }
 export const TableComponent = (props: TableProps) => {
   const [data, setData] = useState<Array<ITableElement>>([]);
+
   React.useEffect(() => {
     convert();
   }, [props.data]);
+
   const convert = () => {
     const convertedData: Array<ITableElement> = [];
 
@@ -44,11 +47,12 @@ export const TableComponent = (props: TableProps) => {
             <Button className={styles.deleteButton} type="link">
               <DeleteFilled />
             </Button>
-            <AddModal />
+            <AddModal onAddItem={props.onAddItem} index={index} />
           </Space>
         ),
         children: [],
       };
+
       value.children.forEach((value, index) => {
         const childElement: ITableGroupElement = {
           date: value.date,
