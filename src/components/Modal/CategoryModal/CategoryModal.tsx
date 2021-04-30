@@ -2,30 +2,20 @@ import { Fragment, useState } from "react";
 import styles from "../ModalComponent/ModalComponent.less";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
+import FormCategory from "./interfaces/FormCategory";
 
-export interface IFormElementData {
-  name: string;
-  date: string;
-  spent: string;
+interface CategoryModalProps {
+  onCreateElement: (values: FormCategory) => void;
 }
 
-export interface IFormData {
-  category: string;
-  children: Array<IFormElementData>;
-}
-
-interface ModalComponentProps {
-  onCreateElement: (values: IFormData) => void;
-}
-
-export function ModalComponent(props: ModalComponentProps) {
+export const CategoryModal = (props: CategoryModalProps) => {
   const [visible, setVisible] = useState(false);
 
   const showModal = () => {
     setVisible(true);
   };
 
-  const onFinish = (values: IFormData) => {
+  const onFinish = (values: FormCategory) => {
     props.onCreateElement(values);
     setVisible(false);
   };
@@ -88,4 +78,4 @@ export function ModalComponent(props: ModalComponentProps) {
       </Modal>
     </div>
   );
-}
+};

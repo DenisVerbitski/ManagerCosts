@@ -2,15 +2,13 @@ import { useState } from "react";
 import "antd/dist/antd.css";
 import { Navbar } from "./components/PageHeader/Navbar";
 import { TableComponent } from "./components/TableComponent/Table";
-import {
-  IFormData,
-  IFormElementData,
-} from "./components/Modal/ModalComponent/ModalComponent";
+import FormCategory from "./components/Modal/CategoryModal/interfaces/FormCategory";
+import FormItem from "./components/Modal/ItemModal/interfaces/FormItem";
 
 function App() {
-  const [data, setData] = useState<Array<IFormData>>([]);
+  const [data, setData] = useState<Array<FormCategory>>([]);
 
-  const handleCreateCategory = (values: IFormData) => {
+  const handleCreateCategory = (values: FormCategory) => {
     if (!values.children) values.children = [];
     setData([...data, values]);
   };
@@ -18,17 +16,12 @@ function App() {
     setData(data.splice(index, 1));
   };
 
-  const handleAddItem = (index: number, element: IFormElementData) => {
-    const formItem: IFormElementData = {
-      date: element.date,
-      name: element.name,
-      spent: element.spent,
-    };
-    data[index].children.push(formItem);
+  const handleAddItem = (indexCat: number, item: FormItem) => {
+    data[indexCat].children.push(item);
     setData(data);
   };
-  const handleDeleteItem = (index: number) => {
-    data[index].children = data[index].children.splice(index, 1);
+  const handleDeleteItem = (indexCat: number, indexItem: number) => {
+    data[indexCat].children = data[indexCat].children.splice(indexItem, 1);
     setData(data);
   };
 

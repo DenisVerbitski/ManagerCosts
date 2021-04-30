@@ -1,28 +1,27 @@
-import styles from "../AddModal/AddModal.less";
+import styles from "./ItemModal.less";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
 import { Fragment, useState } from "react";
 import { DatePicker, Space } from "antd";
-import { IFormElementData } from "../ModalComponent/ModalComponent";
+import FormItem from "./interfaces/FormItem";
 
-interface AddModalProps {
+interface ItemModalProps {
   index: number;
-  onAddItem: (index: number, element: IFormElementData) => void;
+  onAddItem: (index: number, element: FormItem) => void;
 }
-export const AddModal = (props: AddModalProps) => {
+export const ItemModal = (props: ItemModalProps) => {
   const [visible, setVisible] = useState(false);
 
   const showModal = () => {
     setVisible(true);
   };
-  const onFinish = (values: IFormElementData) => {
+  const onFinish = (values: FormItem) => {
     props.onAddItem(props.index, values);
     setVisible(false);
   };
   const handleOk = () => {
     setVisible(false);
   };
-
   const handleCancel = () => {
     setVisible(false);
   };
