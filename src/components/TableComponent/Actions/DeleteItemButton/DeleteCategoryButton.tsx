@@ -10,10 +10,9 @@ interface IDeleteCategoryProps {
 
 const DeleteCategoryButton = (props: IDeleteCategoryProps) => {
   const onClick = () => {
-    if (props.kind === "item") {
-    }
-    props.onDeleteItem(props.indexCat, props.indexItem);
+    props.onDeleteCategory(props.index);
   };
+
   return (
     <Button className={styles.deleteButton} type="link">
       <DeleteFilled onClick={onClick} />
