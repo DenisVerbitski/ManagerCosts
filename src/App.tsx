@@ -8,10 +8,16 @@ import {
 } from "./components/Modal/ModalComponent/ModalComponent";
 
 function App() {
-  const handleDeleteItem = (index: number) => {
-    data[index].children = data[index].children.splice(index, 1);
-    setData(data);
+  const [data, setData] = useState<Array<IFormData>>([]);
+
+  const handleCreateCategory = (values: IFormData) => {
+    if (!values.children) values.children = [];
+    setData([...data, values]);
   };
+  const handleDeleteCategory = (index: number) => {
+    setData(data.splice(index, 1));
+  };
+
   const handleAddItem = (index: number, element: IFormElementData) => {
     const formItem: IFormElementData = {
       date: element.date,
@@ -21,30 +27,20 @@ function App() {
     data[index].children.push(formItem);
     setData(data);
   };
-  const dataSource: Array<IFormData> = [
-    {
-      category: "Магазин",
-      children: [
-        {
-          name: "Евроопт",
-          date: "27/04/2021",
-          spent: "50",
-        },
-      ],
-    },
-  ];
-  const [data, setData] = useState<Array<IFormData>>(dataSource);
-  const handleCreateCategory = (values: IFormData) => {
-    if (!values.children) values.children = [];
-    setData([...data, values]);
+  const handleDeleteItem = (index: number) => {
+    data[index].children = data[index].children.splice(index, 1);
+    setData(data);
   };
-  const handleDeleteCategory = (index: number) => {
-    setData(data.splice(index, 1));
-  };
+
   return (
     <div>
       <Navbar onCreateElement={handleCreateCategory} />
-      <TableComponent data={data} onAddItem={handleAddItem} />
+      <TableComponent
+        data={data}
+        onAddItem={handleAddItem}
+        onDeleteItem={handleDeleteItem}
+        onDeleteCategory={handleDeleteCategory}
+      />
     </div>
   );
 }
