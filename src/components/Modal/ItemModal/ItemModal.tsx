@@ -60,7 +60,6 @@ export const ItemModal = (props: ItemModalProps) => {
             initialValue={moment()}
             rules={[
               {
-                type: "object",
                 required: true,
                 message: "Пожалуйста введите дату",
               },
