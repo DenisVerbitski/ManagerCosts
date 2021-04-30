@@ -1,41 +1,27 @@
 import { Table, Space } from "antd";
 import { Button } from "antd";
-import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
+import { DeleteFilled } from "@ant-design/icons";
 import styles from "../TableComponent/Table.less";
-import { IFormData, IFormElementData } from "../Modal/ModalComponent/ModalComponent";
-import { ReactElement, useState } from "react";
+import {
+  IFormData,
+  IFormElementData,
+} from "../Modal/ModalComponent/ModalComponent";
+import { useCallback, useState } from "react";
 import { AddModal } from "../Modal/AddModal/AddModal";
 import React from "react";
+import ITableElement from "./interfaces/ITableElement";
+import ITableGroupElement from "./interfaces/ITableGroupElement";
 
 interface TableProps {
   data: Array<IFormData>;
   onAddItem: (index: number, element: IFormElementData) => void;
 }
-export interface ITableGroupElement {
-  key: number;
-  name: string;
-  date: string;
-  spent: string;
-  actions: ReactElement;
-}
-interface ITableElement {
-  key: number;
-  name: string;
-  date: string;
-  spent: string;
-  actions: ReactElement;
-  children: Array<ITableGroupElement>;
-}
+
 export const TableComponent = (props: TableProps) => {
-  const [data, setData] = useState<Array<ITableElement>>([]);
+  const [tableData, setTableData] = useState<Array<ITableElement>>([]);
 
-  React.useEffect(() => {
-    convert();
-  }, [props.data]);
-
-  const convert = () => {
+  const convert = useCallback((): Array<ITableElement> => {
     const convertedData: Array<ITableElement> = [];
-
     props.data.forEach((value, index) => {
       const element: ITableElement = {
         key: index,
@@ -69,8 +55,14 @@ export const TableComponent = (props: TableProps) => {
       });
       convertedData.push(element);
     });
-    setData(convertedData);
-  };
+
+    return convertedData;
+  }, [props.data, props.onAddItem]);
+
+  React.useEffect(() => {
+    const convertedData = convert();
+    setTableData(convertedData);
+  }, [convert, props.data]);
 
   const columns = [
     {
@@ -100,7 +92,7 @@ export const TableComponent = (props: TableProps) => {
       <Table
         showHeader={false}
         className={styles.cafeTable}
-        dataSource={data}
+        dataSource={tableData}
         columns={columns}
         pagination={false}
       />
