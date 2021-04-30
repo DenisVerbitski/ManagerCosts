@@ -48,7 +48,7 @@ export const CategoryModal = (props: CategoryModalProps) => {
       >
         <Form onFinish={onFinish}>
           <Form.Item
-            name="category"
+            name="name"
             rules={[
               { required: true, message: "Пожалуйста введите категорию" },
             ]}
