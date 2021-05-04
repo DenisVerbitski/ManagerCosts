@@ -57,7 +57,7 @@ export const ItemModal = (props: ItemModalProps) => {
           </Form.Item>
           <Form.Item
             name="date"
-            initialValue={moment()}
+            initialValue={moment().format("MM-DD-YYYY")}
             rules={[
               {
                 required: true,
