@@ -47,7 +47,7 @@ export const TableComponent = (props: TableProps) => {
         date: date,
         key: indexItem,
         name: name,
-        spent: spent,
+        spent: spent.endsWith(" BYN") ? spent : spent + " BYN",
         actions: (
           <DeleteItemButton
             indexCat={indexCat}
@@ -61,9 +61,9 @@ export const TableComponent = (props: TableProps) => {
     [props.onDeleteItem]
   );
 
-  const convert = useCallback((): Array<TableCategory> => {
+  const convert = useCallback((data: FormCategory []): Array<TableCategory> => {
     const convertedData: Array<TableCategory> = [];
-    props.data.forEach((value, indexCat) => {
+    data.forEach((value, indexCat) => {
       const category = createCategory(value, indexCat);
 
       value.children.forEach((value, indexItem) => {
@@ -75,10 +75,10 @@ export const TableComponent = (props: TableProps) => {
     });
 
     return convertedData;
-  }, [createCategory, createItem, props.data]);
+  }, [createCategory, createItem]);
 
   React.useEffect(() => {
-    const convertedData = convert();
+    const convertedData = convert(props.data);
     setTableData(convertedData);
   }, [convert, props.data]);
 

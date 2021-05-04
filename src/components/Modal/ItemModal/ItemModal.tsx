@@ -1,7 +1,7 @@
 import styles from "./ItemModal.less";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { DatePicker, Space } from "antd";
 import FormItem from "./interfaces/FormItem";
 import moment from "moment";
@@ -81,23 +81,21 @@ export const ItemModal = (props: ItemModalProps) => {
             <Input placeholder="Колличество потраченых денег в рублях" />
           </Form.Item>
           <Form.Item>
-            <Fragment>
-              <Button
-                className={styles.okButton}
-                type="primary"
-                htmlType="submit"
-                onClick={handleOk}
-              >
-                Ok
-              </Button>
-              <Button
-                className={styles.cancelButton}
-                htmlType="button"
-                onClick={handleCancel}
-              >
-                Cancel
-              </Button>
-            </Fragment>
+            <Button
+              className={styles.okButton}
+              type="primary"
+              htmlType="submit"
+              onClick={handleOk}
+            >
+              Ok
+            </Button>
+            <Button
+              className={styles.cancelButton}
+              htmlType="button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
           </Form.Item>
         </Form>
       </Modal>

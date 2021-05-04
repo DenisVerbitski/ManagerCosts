@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import styles from "./CategoryModal.less";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
@@ -59,7 +59,6 @@ export const CategoryModal = (props: CategoryModalProps) => {
             />
           </Form.Item>
           <Form.Item>
-            <Fragment>
               <Button
                 className={styles.okButton}
                 type="primary"
@@ -75,7 +74,6 @@ export const CategoryModal = (props: CategoryModalProps) => {
               >
                 Cancel
               </Button>
-            </Fragment>
           </Form.Item>
         </Form>
       </Modal>
