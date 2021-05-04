@@ -1,7 +1,7 @@
 import { Space } from "antd";
 import { ItemModal } from "../../Modal/ItemModal/ItemModal";
 import FormItem from "../../Modal/ItemModal/interfaces/FormItem";
-import DeleteCategoryButton from "../DeleteCategoryButton/DeleteCategoryButton";
+import DeleteButton from "./DeleteButton/DeleteButton";
 
 interface IActionsProps {
   onAddItem: (index: number, element: FormItem) => void;
@@ -12,9 +12,9 @@ interface IActionsProps {
 const Actions = (props: IActionsProps) => {
   return (
     <Space size="small">
-      <DeleteCategoryButton
-        index={props.index}
-        onDeleteCategory={props.onDeleteCategory}
+      <DeleteButton
+        indexCategory={props.index}
+        onClick={props.onDeleteCategory}
       />
       <ItemModal onAddItem={props.onAddItem} index={props.index} />
     </Space>

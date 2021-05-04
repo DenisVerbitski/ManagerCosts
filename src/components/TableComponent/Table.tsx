@@ -7,7 +7,7 @@ import React from "react";
 import TableCategory from "./interfaces/TableCategory";
 import TableItem from "./interfaces/TableItem";
 import Actions from "./Actions/Actions";
-import DeleteItemButton from "./Actions/DeleteItemButton/DeleteItemButton";
+import DeleteButton from "./Actions/DeleteButton/DeleteButton";
 
 interface TableProps {
   data: Array<FormCategory>;
@@ -18,6 +18,13 @@ interface TableProps {
 
 export const TableComponent = (props: TableProps) => {
   const [tableData, setTableData] = useState<Array<TableCategory>>([]);
+
+  const handleDeleteItemClick = (
+    indexCategory: number,
+    indexCategoryItem?: number
+  ) => {
+    if (indexCategoryItem) props.onDeleteItem(indexCategory, indexCategoryItem);
+  };
 
   const createCategory = useCallback(
     (formCategory: FormCategory, index: number) => {
@@ -49,16 +56,16 @@ export const TableComponent = (props: TableProps) => {
         name: name,
         spent: spent,
         actions: (
-          <DeleteItemButton
-            indexCat={indexCat}
-            indexItem={indexItem}
-            onDeleteItem={props.onDeleteItem}
+          <DeleteButton
+            indexCategory={indexCat}
+            indexCategoryItem={indexItem}
+            onClick={handleDeleteItemClick}
           />
         ),
       };
       return item;
     },
-    [props.onDeleteItem]
+    [handleDeleteItemClick]
   );
 
   const convert = useCallback((): Array<TableCategory> => {
