@@ -13,8 +13,8 @@ const DeleteCategoryButton = (props: IDeleteCategoryProps) => {
   };
 
   return (
-    <Button className={styles.deleteButton} type="link">
-      <DeleteFilled onClick={onClick} />
+    <Button className={styles.deleteButton} type="link" onClick={onClick} >
+      <DeleteFilled />
     </Button>
   );
 };
