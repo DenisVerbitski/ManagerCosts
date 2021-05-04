@@ -17,12 +17,7 @@ function App() {
   };
 
   const handleAddItem = (indexCat: number, item: FormItem) => {
-    const { name, date, spent } = item;
-    data[indexCat].children.push({
-      name: name,
-      date: date,
-      spent: spent,
-    });
+    data[indexCat].children.push(item);
     setData([...data]);
   };
   const handleDeleteItem = (indexCat: number, indexItem: number) => {
