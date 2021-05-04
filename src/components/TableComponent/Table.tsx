@@ -1,76 +1,86 @@
-import { Table, Space } from "antd";
-import { Button } from "antd";
-import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
-import styles from "../TableComponent/Table.less";
-import { IFormData, IFormElementData } from "../Modal/ModalComponent/ModalComponent";
-import { ReactElement, useState } from "react";
-import { AddModal } from "../Modal/AddModal/AddModal";
+import { Table } from "antd";
+import styles from "./Table.less";
+import FormCategory from "../Modal/CategoryModal/interfaces/FormCategory";
+import FormItem from "../Modal/ItemModal/interfaces/FormItem";
+import { useCallback, useState } from "react";
 import React from "react";
+import TableCategory from "./interfaces/TableCategory";
+import TableItem from "./interfaces/TableItem";
+import Actions from "./Actions/Actions";
+import DeleteItemButton from "./Actions/DeleteItemButton/DeleteItemButton";
 
 interface TableProps {
-  data: Array<IFormData>;
-  onAddItem: (index: number, element: IFormElementData) => void;
+  data: Array<FormCategory>;
+  onDeleteCategory: (index: number) => void;
+  onAddItem: (index: number, element: FormItem) => void;
+  onDeleteItem: (indexCat: number, indexItem: number) => void;
 }
-export interface ITableGroupElement {
-  key: number;
-  name: string;
-  date: string;
-  spent: string;
-  actions: ReactElement;
-}
-interface ITableElement {
-  key: number;
-  name: string;
-  date: string;
-  spent: string;
-  actions: ReactElement;
-  children: Array<ITableGroupElement>;
-}
+
 export const TableComponent = (props: TableProps) => {
-  const [data, setData] = useState<Array<ITableElement>>([]);
+  const [tableData, setTableData] = useState<Array<TableCategory>>([]);
 
-  React.useEffect(() => {
-    convert();
-  }, [props.data]);
-
-  const convert = () => {
-    const convertedData: Array<ITableElement> = [];
-
-    props.data.forEach((value, index) => {
-      const element: ITableElement = {
+  const createCategory = useCallback(
+    (formCategory: FormCategory, index: number) => {
+      const category: TableCategory = {
         key: index,
-        name: value.category,
+        name: formCategory.name,
         date: "Дата",
         spent: "Потрачено",
         actions: (
-          <Space size="small">
-            <Button className={styles.deleteButton} type="link">
-              <DeleteFilled />
-            </Button>
-            <AddModal onAddItem={props.onAddItem} index={index} />
-          </Space>
+          <Actions
+            onAddItem={props.onAddItem}
+            onDeleteCategory={props.onDeleteCategory}
+            index={index}
+          />
         ),
         children: [],
       };
+      return category;
+    },
+    [props.onAddItem, props.onDeleteCategory]
+  );
 
-      value.children.forEach((value, index) => {
-        const childElement: ITableGroupElement = {
-          date: value.date,
-          key: index,
-          name: value.name,
-          spent: value.spent,
-          actions: (
-            <Button className={styles.deleteButton} type="link">
-              <DeleteFilled />
-            </Button>
-          ),
-        };
-        element.children.push(childElement);
+  const createItem = useCallback(
+    (formItem: FormItem, indexCat: number, indexItem: number) => {
+      const { name, date, spent } = formItem;
+      const item: TableItem = {
+        date: date,
+        key: indexItem,
+        name: name,
+        spent: spent,
+        actions: (
+          <DeleteItemButton
+            indexCat={indexCat}
+            indexItem={indexItem}
+            onDeleteItem={props.onDeleteItem}
+          />
+        ),
+      };
+      return item;
+    },
+    [props.onDeleteItem]
+  );
+
+  const convert = useCallback((): Array<TableCategory> => {
+    const convertedData: Array<TableCategory> = [];
+    props.data.forEach((value, indexCat) => {
+      const category = createCategory(value, indexCat);
+
+      value.children.forEach((value, indexItem) => {
+        const childElement = createItem(value, indexCat, indexItem);
+        category.children.push(childElement);
       });
-      convertedData.push(element);
+
+      convertedData.push(category);
     });
-    setData(convertedData);
-  };
+
+    return convertedData;
+  }, [createCategory, createItem, props.data]);
+
+  React.useEffect(() => {
+    const convertedData = convert();
+    setTableData(convertedData);
+  }, [convert, props.data]);
 
   const columns = [
     {
@@ -99,8 +109,7 @@ export const TableComponent = (props: TableProps) => {
     <div className={styles.margin}>
       <Table
         showHeader={false}
-        className={styles.cafeTable}
-        dataSource={data}
+        dataSource={tableData}
         columns={columns}
         pagination={false}
       />
