@@ -108,6 +108,7 @@ export const TableComponent = (props: TableProps) => {
   return (
     <div className={styles.margin}>
       <Table
+        className={styles.location}
         showHeader={false}
         dataSource={tableData}
         columns={columns}
