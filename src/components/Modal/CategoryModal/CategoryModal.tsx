@@ -53,7 +53,10 @@ export const CategoryModal = (props: CategoryModalProps) => {
               { required: true, message: "Пожалуйста введите категорию" },
             ]}
           >
-            <Input placeholder="Название категории" />
+            <Input
+              ref={(ref) => ref?.focus()}
+              placeholder="Название категории"
+            />
           </Form.Item>
           <Form.Item>
             <Fragment>

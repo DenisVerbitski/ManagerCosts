@@ -13,16 +13,16 @@ function App() {
     setData([...data, values]);
   };
   const handleDeleteCategory = (index: number) => {
-    setData(data.splice(index, 1));
+    setData([...data.slice(0, index), ...data.slice(index + 1)]);
   };
 
   const handleAddItem = (indexCat: number, item: FormItem) => {
     data[indexCat].children.push(item);
-    setData(data);
+    setData([...data]);
   };
   const handleDeleteItem = (indexCat: number, indexItem: number) => {
-    data[indexCat].children = data[indexCat].children.splice(indexItem, 1);
-    setData(data);
+    data[indexCat].children.splice(indexItem, 1);
+    setData([...data]);
   };
 
   return (

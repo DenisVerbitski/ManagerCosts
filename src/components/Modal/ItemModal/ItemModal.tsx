@@ -4,6 +4,7 @@ import { Form, Modal, Button, Input } from "antd";
 import { Fragment, useState } from "react";
 import { DatePicker, Space } from "antd";
 import FormItem from "./interfaces/FormItem";
+import moment from "moment";
 
 interface ItemModalProps {
   index: number;
@@ -49,14 +50,18 @@ export const ItemModal = (props: ItemModalProps) => {
               },
             ]}
           >
-            <Input placeholder="Название заведения" />
+            <Input
+              ref={(ref) => ref?.focus()}
+              placeholder="Название заведения"
+            />
           </Form.Item>
           <Form.Item
             name="date"
+            initialValue={moment()}
             rules={[
               {
                 required: true,
-                message: "Пожалуйста дату",
+                message: "Пожалуйста введите дату",
               },
             ]}
           >
