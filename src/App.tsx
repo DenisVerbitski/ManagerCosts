@@ -3,10 +3,10 @@ import "antd/dist/antd.css";
 import { Navbar } from "./components/PageHeader/Navbar";
 import { TableComponent } from "./components/TableComponent/Table";
 import FormCategory from "./components/Modal/CategoryModal/interfaces/FormCategory";
-import FormItem from "./components/Modal/ItemModal/interfaces/FormItem";
+import FormCategoryItem from "./components/Modal/ItemModal/interfaces/FormCategoryItem";
 
 function App() {
-  const [data, setData] = useState<Array<FormCategory>>([]);
+  const [data, setData] = useState<FormCategory[]>([]);
 
   const handleCreateCategory = (values: FormCategory) => {
     if (!values.children) values.children = [];
@@ -16,22 +16,22 @@ function App() {
     setData([...data.slice(0, index), ...data.slice(index + 1)]);
   };
 
-  const handleAddItem = (indexCat: number, item: FormItem) => {
-    data[indexCat].children.push(item);
+  const handleAddCategoryItem = (indexCategory: number, item: FormCategoryItem) => {
+    data[indexCategory].children.push(item);
     setData([...data]);
   };
-  const handleDeleteItem = (indexCat: number, indexItem: number) => {
-    data[indexCat].children.splice(indexItem, 1);
+  const handleDeleteCategoryItem = (indexCategory: number, indexCategoryItem: number) => {
+    data[indexCategory].children.splice(indexCategoryItem, 1);
     setData([...data]);
   };
 
   return (
     <div>
-      <Navbar onCreateElement={handleCreateCategory} />
+      <Navbar onCreateCategory={handleCreateCategory} />
       <TableComponent
-        data={data}
-        onAddItem={handleAddItem}
-        onDeleteItem={handleDeleteItem}
+        formData={data}
+        onAddCategoryItem={handleAddCategoryItem}
+        onDeleteCategoryItem={handleDeleteCategoryItem}
         onDeleteCategory={handleDeleteCategory}
       />
     </div>

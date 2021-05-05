@@ -1,93 +1,91 @@
 import { Table } from "antd";
 import styles from "./Table.less";
 import FormCategory from "../Modal/CategoryModal/interfaces/FormCategory";
-import FormItem from "../Modal/ItemModal/interfaces/FormItem";
+import FormCategoryItem from "../Modal/ItemModal/interfaces/FormCategoryItem";
 import { useCallback, useState } from "react";
 import React from "react";
 import TableCategory from "./interfaces/TableCategory";
-import TableItem from "./interfaces/TableItem";
+import TableCategoryItem from "./interfaces/TableCategoryItem";
 import Actions from "./Actions/Actions";
 import DeleteButton from "./Actions/DeleteButton/DeleteButton";
 
 interface TableProps {
-  data: Array<FormCategory>;
-  onDeleteCategory: (index: number) => void;
-  onAddItem: (index: number, element: FormItem) => void;
-  onDeleteItem: (indexCat: number, indexItem: number) => void;
+  formData: FormCategory[];
+  onDeleteCategory: (indexCategory: number) => void;
+  onAddCategoryItem: (indexCategory: number, categoryItem: FormCategoryItem) => void;
+  onDeleteCategoryItem: (indexCategory: number, indexCategoryItem: number) => void;
 }
 
 export const TableComponent = (props: TableProps) => {
-  const [tableData, setTableData] = useState<Array<TableCategory>>([]);
+  const [tableData, setTableData] = useState<TableCategory[]>([]);
 
   const handleDeleteItemClick = (
     indexCategory: number,
     indexCategoryItem?: number
   ) => {
-    if (indexCategoryItem) props.onDeleteItem(indexCategory, indexCategoryItem);
+    if (indexCategoryItem !== undefined) props.onDeleteCategoryItem(indexCategory, indexCategoryItem);
   };
 
-  const createCategory = useCallback(
-    (formCategory: FormCategory, index: number) => {
-      const category: TableCategory = {
-        key: index,
-        name: formCategory.name,
-        date: "Дата",
-        spent: "Потрачено",
-        actions: (
-          <Actions
-            onAddItem={props.onAddItem}
-            onDeleteCategory={props.onDeleteCategory}
-            index={index}
-          />
-        ),
-        children: [],
-      };
-      return category;
-    },
-    [props.onAddItem, props.onDeleteCategory]
-  );
+  const createTableCategory = (formCategory: FormCategory, indexCategory: number) => {
+    const category: TableCategory = {
+      key: indexCategory,
+      name: formCategory.name,
+      date: "Дата",
+      spent: "Потрачено",
+      actions: (
+        <Actions
+          onAddItem={props.onAddCategoryItem}
+          onDeleteCategory={props.onDeleteCategory}
+          indexCategory={indexCategory}
+        />
+      ),
+      children: [],
+    };
+    return category;
+  };
 
-  const createItem = useCallback(
-    (formItem: FormItem, indexCat: number, indexItem: number) => {
-      const { name, date, spent } = formItem;
-      const item: TableItem = {
-        date: date,
-        key: indexItem,
-        name: name,
-        spent: spent.endsWith(" BYN") ? spent : spent + " BYN",
-        actions: (
-          <DeleteButton
-            indexCategory={indexCat}
-            indexCategoryItem={indexItem}
-            onClick={handleDeleteItemClick}
-          />
-        ),
-      };
-      return item;
-    },
-    [handleDeleteItemClick]
-  );
+  const createTableCategoryItem = ( 
+    formItem: FormCategoryItem,
+    indexCategory: number,
+    indexCategoryItem: number
+  ) : TableCategoryItem => {
+    const {date, name, spent} = formItem;
+    const categoryItem: TableCategoryItem = {
+      name: name,
+      date: date,
+      spent: spent,
+      key: indexCategoryItem,
+      actions: (
+        <DeleteButton
+          indexCategory={indexCategory}
+          indexCategoryItem={indexCategoryItem}
+          onClick={handleDeleteItemClick}
+        />
+      ),
+    };
+    return categoryItem;
+  };
 
-  const convert = useCallback((data: FormCategory []): Array<TableCategory> => {
-    const convertedData: Array<TableCategory> = [];
-    data.forEach((value, indexCat) => {
-      const category = createCategory(value, indexCat);
+  const convertFormToTable = (formData: FormCategory[]): TableCategory[] => {
+    const convertedData: TableCategory[] = [];
+    formData.forEach((value, indexCategory) => {
+      const category = createTableCategory(value, indexCategory);
 
-      value.children.forEach((value, indexItem) => {
-        const childElement = createItem(value, indexCat, indexItem);
-        category.children.push(childElement);
+      value.children.forEach((value, indexCategoryItem) => {
+        const categoryItem = createTableCategoryItem(value, indexCategory, indexCategoryItem);
+        category.children.push(categoryItem);
       });
 
       convertedData.push(category);
     });
 
     return convertedData;
-  }, [createCategory, createItem]);
+  };
 
   React.useEffect(() => {
-    const convertedData = convert(props.data);
+    const convertedData = convertFormToTable(props.formData);
     setTableData(convertedData);
-  }, [convert, props.data]);
+  }, [props.formData]);
 
   const columns = [
     {

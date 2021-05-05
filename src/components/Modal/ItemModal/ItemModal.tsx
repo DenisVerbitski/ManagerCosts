@@ -3,26 +3,41 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
 import { useState } from "react";
 import { DatePicker, Space } from "antd";
-import FormItem from "./interfaces/FormItem";
+import FormCategoryItem from "./interfaces/FormCategoryItem";
 import moment from "moment";
 
 interface ItemModalProps {
-  index: number;
-  onAddItem: (index: number, element: FormItem) => void;
+  indexCategory: number;
+  onAddCategoryItem: (
+    indexCategory: number,
+    categoryItem: FormCategoryItem
+  ) => void;
 }
 export const ItemModal = (props: ItemModalProps) => {
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setVisible] = useState(false);
 
   const showModal = () => {
     setVisible(true);
   };
-  const onFinish = (values: FormItem) => {
-    props.onAddItem(props.index, values);
+
+  const onFinish = (values: {
+    name: string;
+    date: moment.Moment;
+    spent: number;
+  }) => {
+    const { name, date, spent } = values;
+    props.onAddCategoryItem(props.indexCategory, {
+      date: date.format("MM/DD/YYYY"),
+      name: name,
+      spent: spent,
+    });
     setVisible(false);
   };
+
   const handleOk = () => {
     setVisible(false);
   };
+
   const handleCancel = () => {
     setVisible(false);
   };
@@ -36,7 +51,7 @@ export const ItemModal = (props: ItemModalProps) => {
         onOk={handleOk}
         onCancel={handleCancel}
         destroyOnClose={true}
-        visible={visible}
+        visible={isVisible}
         footer={false}
         title="Введите данных о расходах"
       >
@@ -57,7 +72,7 @@ export const ItemModal = (props: ItemModalProps) => {
           </Form.Item>
           <Form.Item
             name="date"
-            initialValue={moment().format("MM/DD/YYYY")}
+            initialValue={moment()}
             rules={[
               {
                 required: true,
@@ -65,9 +80,11 @@ export const ItemModal = (props: ItemModalProps) => {
               },
             ]}
           >
-            <Space direction="vertical">
-              <DatePicker className={styles.date} placeholder="Дата" />
-            </Space>
+            <DatePicker
+              className={styles.date}
+              placeholder="Дата"
+              format="MM/DD/YYYY"
+            />
           </Form.Item>
           <Form.Item
             name="spent"
@@ -78,7 +95,10 @@ export const ItemModal = (props: ItemModalProps) => {
               },
             ]}
           >
-            <Input placeholder="Колличество потраченых денег в рублях" />
+            <Input
+              type="number"
+              placeholder="Колличество потраченых денег в рублях"
+            />
           </Form.Item>
           <Form.Item>
             <Button

@@ -5,18 +5,18 @@ import { Form, Modal, Button, Input } from "antd";
 import FormCategory from "./interfaces/FormCategory";
 
 interface CategoryModalProps {
-  onCreateElement: (values: FormCategory) => void;
+  onCreateCategory: (values: FormCategory) => void;
 }
 
 export const CategoryModal = (props: CategoryModalProps) => {
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setVisible] = useState(false);
 
   const showModal = () => {
     setVisible(true);
   };
 
   const onFinish = (values: FormCategory) => {
-    props.onCreateElement(values);
+    props.onCreateCategory(values);
     setVisible(false);
   };
 
@@ -42,7 +42,7 @@ export const CategoryModal = (props: CategoryModalProps) => {
       <Modal
         onCancel={handleCancel}
         destroyOnClose={true}
-        visible={visible}
+        visible={isVisible}
         title="Добавить категорию"
         footer={false}
       >
@@ -59,21 +59,21 @@ export const CategoryModal = (props: CategoryModalProps) => {
             />
           </Form.Item>
           <Form.Item>
-              <Button
-                className={styles.okButton}
-                type="primary"
-                htmlType="submit"
-                onClick={handleOk}
-              >
-                Ok
-              </Button>
-              <Button
-                className={styles.cancelButton}
-                htmlType="button"
-                onClick={handleCancel}
-              >
-                Cancel
-              </Button>
+            <Button
+              className={styles.okButton}
+              type="primary"
+              htmlType="submit"
+              onClick={handleOk}
+            >
+              Ok
+            </Button>
+            <Button
+              className={styles.cancelButton}
+              htmlType="button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
           </Form.Item>
         </Form>
       </Modal>

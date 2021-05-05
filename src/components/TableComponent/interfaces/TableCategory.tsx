@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import TableItem from "./TableItem";
+import TableCategoryItem from "./TableCategoryItem";
 
 export default interface TableCategory {
   key: number;
@@ -7,5 +7,5 @@ export default interface TableCategory {
   date: string;
   spent: string;
   actions: ReactElement;
-  children: Array<TableItem>;
+  children: TableCategoryItem[];
 }

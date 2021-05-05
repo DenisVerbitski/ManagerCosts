@@ -10,7 +10,7 @@ interface IDeleteProps {
 
 const DeleteButton = (props: IDeleteProps) => {
   const onClick = () => {
-    if (props.indexCategoryItem) {
+    if (props.indexCategoryItem !== undefined) {
       props.onClick(props.indexCategory, props.indexCategoryItem);
     } else {
       props.onClick(props.indexCategory);
