@@ -2,7 +2,7 @@ import { Table } from "antd";
 import styles from "./Table.less";
 import FormCategory from "../Modal/CategoryModal/interfaces/FormCategory";
 import FormCategoryItem from "../Modal/ItemModal/interfaces/FormCategoryItem";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import React from "react";
 import TableCategory from "./interfaces/TableCategory";
 import TableCategoryItem from "./interfaces/TableCategoryItem";
@@ -12,8 +12,14 @@ import DeleteButton from "./Actions/DeleteButton/DeleteButton";
 interface TableProps {
   formData: FormCategory[];
   onDeleteCategory: (indexCategory: number) => void;
-  onAddCategoryItem: (indexCategory: number, categoryItem: FormCategoryItem) => void;
-  onDeleteCategoryItem: (indexCategory: number, indexCategoryItem: number) => void;
+  onAddCategoryItem: (
+    indexCategory: number,
+    categoryItem: FormCategoryItem
+  ) => void;
+  onDeleteCategoryItem: (
+    indexCategory: number,
+    indexCategoryItem: number
+  ) => void;
 }
 
 export const TableComponent = (props: TableProps) => {
@@ -23,10 +29,14 @@ export const TableComponent = (props: TableProps) => {
     indexCategory: number,
     indexCategoryItem?: number
   ) => {
-    if (indexCategoryItem !== undefined) props.onDeleteCategoryItem(indexCategory, indexCategoryItem);
+    if (indexCategoryItem !== undefined)
+      props.onDeleteCategoryItem(indexCategory, indexCategoryItem);
   };
 
-  const createTableCategory = (formCategory: FormCategory, indexCategory: number) => {
+  const createTableCategory = (
+    formCategory: FormCategory,
+    indexCategory: number
+  ) => {
     const category: TableCategory = {
       key: indexCategory,
       name: formCategory.name,
@@ -44,16 +54,16 @@ export const TableComponent = (props: TableProps) => {
     return category;
   };
 
-  const createTableCategoryItem = ( 
+  const createTableCategoryItem = (
     formItem: FormCategoryItem,
     indexCategory: number,
     indexCategoryItem: number
-  ) : TableCategoryItem => {
-    const {date, name, spent} = formItem;
+  ): TableCategoryItem => {
+    const { date, name, spent } = formItem;
     const categoryItem: TableCategoryItem = {
       name: name,
       date: date,
-      spent: spent,
+      spent: Number(spent).toFixed(2) + " BYN",
       key: indexCategoryItem,
       actions: (
         <DeleteButton
@@ -72,7 +82,11 @@ export const TableComponent = (props: TableProps) => {
       const category = createTableCategory(value, indexCategory);
 
       value.children.forEach((value, indexCategoryItem) => {
-        const categoryItem = createTableCategoryItem(value, indexCategory, indexCategoryItem);
+        const categoryItem = createTableCategoryItem(
+          value,
+          indexCategory,
+          indexCategoryItem
+        );
         category.children.push(categoryItem);
       });
 

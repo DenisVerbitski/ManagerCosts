@@ -5,5 +5,5 @@ export default interface TableCategoryItem {
   actions: ReactElement;
   name: string;
   date: string;
-  spent: number;
+  spent: string;
 }

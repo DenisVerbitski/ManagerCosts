@@ -2,7 +2,7 @@ import styles from "./ItemModal.less";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
 import { useState } from "react";
-import { DatePicker, Space } from "antd";
+import { DatePicker } from "antd";
 import FormCategoryItem from "./interfaces/FormCategoryItem";
 import moment from "moment";
 
@@ -31,7 +31,7 @@ export const ItemModal = (props: ItemModalProps) => {
       name: name,
       spent: spent,
     });
-    setVisible(false);
+    //setVisible(false);
   };
 
   const handleOk = () => {
