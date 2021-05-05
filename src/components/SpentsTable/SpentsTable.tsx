@@ -77,7 +77,9 @@ export const SpentsTable = (props: SpentsTableProps) => {
     return categoryItem;
   };
 
-  const convertFormToTable = (formData: FormCategory[]): SpentsTableCategory[] => {
+  const convertFormToTable = (
+    formData: FormCategory[]
+  ): SpentsTableCategory[] => {
     const convertedData: SpentsTableCategory[] = [];
     formData.forEach((formCategory, indexOfCategory) => {
       const tableCategory = convertCategory(formCategory, indexOfCategory);
@@ -128,7 +130,7 @@ export const SpentsTable = (props: SpentsTableProps) => {
   return (
     <div className={styles.margin}>
       <Table
-        className={styles.location}
+        className={styles.TableStyles}
         showHeader={false}
         dataSource={tableData}
         columns={columns}

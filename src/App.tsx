@@ -9,7 +9,9 @@ function App() {
   const [formData, setFormData] = useState<FormCategory[]>([]);
 
   const handleSpentsAddCategory = (categoryToAdd: FormCategory) => {
-    if (!categoryToAdd.items) categoryToAdd.items = [];
+    if (!categoryToAdd.items) {
+      categoryToAdd.items = [];
+    }
     setFormData([...formData, categoryToAdd]);
   };
   const handleSpentsDeleteCategory = (indexOfCategory: number) => {
