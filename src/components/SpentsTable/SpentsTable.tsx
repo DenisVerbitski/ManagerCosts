@@ -130,6 +130,7 @@ export const SpentsTable = (props: SpentsTableProps) => {
   return (
     <div className={styles.margin}>
       <Table
+        expandable={{ childrenColumnName: "items" }}
         className={styles.TableStyles}
         showHeader={false}
         dataSource={tableData}
