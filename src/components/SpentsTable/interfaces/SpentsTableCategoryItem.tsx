@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 
-export default interface TableCategoryItem {
+export default interface SpentsTableCategoryItem {
   key: number;
-  actions: ReactElement;
+  actionButtons: ReactElement;
   name: string;
   date: string;
   spent: string;

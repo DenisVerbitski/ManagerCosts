@@ -1,38 +1,47 @@
 import { useState } from "react";
 import "antd/dist/antd.css";
 import { Navbar } from "./components/PageHeader/Navbar";
-import { TableComponent } from "./components/TableComponent/Table";
+import { SpentsTable } from "./components/SpentsTable/SpentsTable";
 import FormCategory from "./components/Modal/CategoryModal/interfaces/FormCategory";
 import FormCategoryItem from "./components/Modal/ItemModal/interfaces/FormCategoryItem";
 
 function App() {
-  const [data, setData] = useState<FormCategory[]>([]);
+  const [formData, setFormData] = useState<FormCategory[]>([]);
 
-  const handleCreateCategory = (values: FormCategory) => {
-    if (!values.children) values.children = [];
-    setData([...data, values]);
+  const handleSpentsAddCategory = (categoryToAdd: FormCategory) => {
+    if (!categoryToAdd.items) categoryToAdd.items = [];
+    setFormData([...formData, categoryToAdd]);
   };
-  const handleDeleteCategory = (index: number) => {
-    setData([...data.slice(0, index), ...data.slice(index + 1)]);
+  const handleSpentsDeleteCategory = (indexOfCategory: number) => {
+    setFormData([
+      ...formData.slice(0, indexOfCategory),
+      ...formData.slice(indexOfCategory + 1),
+    ]);
   };
 
-  const handleAddCategoryItem = (indexCategory: number, item: FormCategoryItem) => {
-    data[indexCategory].children.push(item);
-    setData([...data]);
+  const handleSpentsAddCategoryItem = (
+    indexOfCategory: number,
+    itemToAdd: FormCategoryItem
+  ) => {
+    formData[indexOfCategory].items.push(itemToAdd);
+    setFormData([...formData]);
   };
-  const handleDeleteCategoryItem = (indexCategory: number, indexCategoryItem: number) => {
-    data[indexCategory].children.splice(indexCategoryItem, 1);
-    setData([...data]);
+  const handleSpentsDeleteCategoryItem = (
+    indexOfCategory: number,
+    indexOfItemInCategory: number
+  ) => {
+    formData[indexOfCategory].items.splice(indexOfItemInCategory, 1);
+    setFormData([...formData]);
   };
 
   return (
     <div>
-      <Navbar onCreateCategory={handleCreateCategory} />
-      <TableComponent
-        formData={data}
-        onAddCategoryItem={handleAddCategoryItem}
-        onDeleteCategoryItem={handleDeleteCategoryItem}
-        onDeleteCategory={handleDeleteCategory}
+      <Navbar onAddCategory={handleSpentsAddCategory} />
+      <SpentsTable
+        formData={formData}
+        onAddItemToCategory={handleSpentsAddCategoryItem}
+        onDeleteItemFromCategory={handleSpentsDeleteCategoryItem}
+        onDeleteCategory={handleSpentsDeleteCategory}
       />
     </div>
   );

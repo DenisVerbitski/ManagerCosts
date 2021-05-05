@@ -3,17 +3,17 @@ import { Button } from "antd";
 import styles from "./DeleteButton.less";
 
 interface IDeleteProps {
-  onClick: (indexCategory: number, indexCategoryItem?: number) => void;
-  indexCategory: number;
-  indexCategoryItem?: number;
+  onClick: (indexOfCategory: number, indexOfItemInCategory?: number) => void;
+  indexOfCategory: number;
+  indexOfItemInCategory?: number;
 }
 
 const DeleteButton = (props: IDeleteProps) => {
   const onClick = () => {
-    if (props.indexCategoryItem !== undefined) {
-      props.onClick(props.indexCategory, props.indexCategoryItem);
+    if (props.indexOfItemInCategory === undefined) {
+      props.onClick(props.indexOfCategory);
     } else {
-      props.onClick(props.indexCategory);
+      props.onClick(props.indexOfCategory, props.indexOfItemInCategory);
     }
   };
 

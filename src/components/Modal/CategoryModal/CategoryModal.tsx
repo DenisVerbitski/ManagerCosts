@@ -5,7 +5,7 @@ import { Form, Modal, Button, Input } from "antd";
 import FormCategory from "./interfaces/FormCategory";
 
 interface CategoryModalProps {
-  onCreateCategory: (values: FormCategory) => void;
+  onAddCategory: (category: FormCategory) => void;
 }
 
 export const CategoryModal = (props: CategoryModalProps) => {
@@ -15,8 +15,8 @@ export const CategoryModal = (props: CategoryModalProps) => {
     setVisible(true);
   };
 
-  const onFinish = (values: FormCategory) => {
-    props.onCreateCategory(values);
+  const onFinish = (categoryToAdd: FormCategory) => {
+    props.onAddCategory(categoryToAdd);
     setVisible(false);
   };
 

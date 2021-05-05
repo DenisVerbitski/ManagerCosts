@@ -7,10 +7,10 @@ import FormCategoryItem from "./interfaces/FormCategoryItem";
 import moment from "moment";
 
 interface ItemModalProps {
-  indexCategory: number;
-  onAddCategoryItem: (
-    indexCategory: number,
-    categoryItem: FormCategoryItem
+  indexOfCategory: number;
+  onAddItemToCategory: (
+    indexOfCategory: number,
+    itemToAdd: FormCategoryItem
   ) => void;
 }
 export const ItemModal = (props: ItemModalProps) => {
@@ -20,18 +20,17 @@ export const ItemModal = (props: ItemModalProps) => {
     setVisible(true);
   };
 
-  const onFinish = (values: {
+  const onFinish = (category: {
     name: string;
     date: moment.Moment;
     spent: number;
   }) => {
-    const { name, date, spent } = values;
-    props.onAddCategoryItem(props.indexCategory, {
+    const { name, date, spent } = category;
+    props.onAddItemToCategory(props.indexOfCategory, {
       date: date.format("MM/DD/YYYY"),
       name: name,
       spent: spent,
     });
-    //setVisible(false);
   };
 
   const handleOk = () => {
