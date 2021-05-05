@@ -40,6 +40,7 @@ export const CategoryModal = (props: CategoryModalProps) => {
       </Button>
 
       <Modal
+      className={styles.CategoryModalStyles}
         onCancel={handleCancel}
         destroyOnClose={true}
         visible={isVisible}

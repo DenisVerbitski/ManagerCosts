@@ -47,6 +47,7 @@ export const ItemModal = (props: ItemModalProps) => {
         <PlusOutlined />
       </Button>
       <Modal
+        className={styles.ItemModalStyles}
         onOk={handleOk}
         onCancel={handleCancel}
         destroyOnClose={true}
