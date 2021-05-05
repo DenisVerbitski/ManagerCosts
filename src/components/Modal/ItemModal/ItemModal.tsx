@@ -33,11 +33,7 @@ export const ItemModal = (props: ItemModalProps) => {
     });
   };
 
-  const handleOk = () => {
-    setVisible(false);
-  };
-
-  const handleCancel = () => {
+  const closeModal = () => {
     setVisible(false);
   };
 
@@ -48,8 +44,8 @@ export const ItemModal = (props: ItemModalProps) => {
       </Button>
       <Modal
         className={styles.ItemModalStyles}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        onOk={closeModal}
+        onCancel={closeModal}
         destroyOnClose={true}
         visible={isVisible}
         footer={false}
@@ -105,14 +101,14 @@ export const ItemModal = (props: ItemModalProps) => {
               className={styles.okButton}
               type="primary"
               htmlType="submit"
-              onClick={handleOk}
+              onClick={closeModal}
             >
               Ok
             </Button>
             <Button
               className={styles.cancelButton}
               htmlType="button"
-              onClick={handleCancel}
+              onClick={closeModal}
             >
               Cancel
             </Button>

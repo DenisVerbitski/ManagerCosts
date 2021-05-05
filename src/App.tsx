@@ -12,12 +12,13 @@ function App() {
     if (!categoryToAdd.items) {
       categoryToAdd.items = [];
     }
-    setFormData([...formData, categoryToAdd]);
+    setFormData((prevState) => prevState.concat(categoryToAdd));
   };
+
   const handleSpentsDeleteCategory = (indexOfCategory: number) => {
-    setFormData([
-      ...formData.slice(0, indexOfCategory),
-      ...formData.slice(indexOfCategory + 1),
+    setFormData((prevState) => [
+      ...prevState.slice(0, indexOfCategory),
+      ...prevState.slice(indexOfCategory + 1),
     ]);
   };
 
@@ -25,15 +26,30 @@ function App() {
     indexOfCategory: number,
     itemToAdd: FormCategoryItem
   ) => {
-    formData[indexOfCategory].items.push(itemToAdd);
-    setFormData([...formData]);
+    setFormData((prevState) => [
+      ...prevState.slice(0, indexOfCategory),
+      ...prevState.slice(indexOfCategory + 1),
+      {
+        ...prevState[indexOfCategory],
+        items: prevState[indexOfCategory].items.concat(itemToAdd),
+      },
+    ]);
   };
   const handleSpentsDeleteCategoryItem = (
     indexOfCategory: number,
     indexOfItemInCategory: number
   ) => {
-    formData[indexOfCategory].items.splice(indexOfItemInCategory, 1);
-    setFormData([...formData]);
+    setFormData((prevState) => [
+      ...prevState.slice(0, indexOfCategory),
+      ...prevState.slice(indexOfCategory + 1),
+      {
+        ...prevState[indexOfCategory],
+        items: [
+          ...prevState[indexOfCategory].items.slice(0, indexOfItemInCategory),
+          ...prevState[indexOfCategory].items.slice(indexOfItemInCategory + 1),
+        ],
+      },
+    ]);
   };
 
   return (

@@ -25,13 +25,19 @@ interface SpentsTableProps {
 export const SpentsTable = (props: SpentsTableProps) => {
   const CURRENCY_BYN = "BYN";
   const [tableData, setTableData] = useState<SpentsTableCategory[]>([]);
+  const {
+    formData,
+    onAddItemToCategory,
+    onDeleteCategory,
+    onDeleteItemFromCategory,
+  } = props;
 
   const handleDeleteItemClick = (
     indexOfCategory: number,
     indexOfItemInCategory?: number
   ) => {
     if (indexOfItemInCategory !== undefined)
-      props.onDeleteItemFromCategory(indexOfCategory, indexOfItemInCategory);
+      onDeleteItemFromCategory(indexOfCategory, indexOfItemInCategory);
   };
 
   const convertCategory = (
@@ -45,8 +51,8 @@ export const SpentsTable = (props: SpentsTableProps) => {
       spent: "Потрачено",
       actionButtons: (
         <Actions
-          onAddItemToCategory={props.onAddItemToCategory}
-          onDeleteCategory={props.onDeleteCategory}
+          onAddItemToCategory={onAddItemToCategory}
+          onDeleteCategory={onDeleteCategory}
           indexOfCategory={indexOfCategory}
         />
       ),
@@ -100,9 +106,9 @@ export const SpentsTable = (props: SpentsTableProps) => {
   };
 
   React.useEffect(() => {
-    const convertedData = convertFormToTable(props.formData);
+    const convertedData = convertFormToTable(formData);
     setTableData([...convertedData]);
-  }, [props.formData]);
+  }, [formData]);
 
   const columns = [
     {
