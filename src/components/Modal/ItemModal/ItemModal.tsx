@@ -3,21 +3,24 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
 import { useState } from "react";
 import { DatePicker } from "antd";
-import FormCategoryItem from "./interfaces/FormCategoryItem";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { addItemToCategory } from "../../../app/spentsData";
 
 interface ItemModalProps {
   indexOfCategory: number;
-  onAddItemToCategory: (
-    indexOfCategory: number,
-    itemToAdd: FormCategoryItem
-  ) => void;
 }
+
 export const ItemModal = (props: ItemModalProps) => {
+  const dispatch = useDispatch();
   const [isVisible, setVisible] = useState(false);
 
   const showModal = () => {
     setVisible(true);
+  };
+
+  const hideModal = () => {
+    setVisible(false);
   };
 
   const onFinish = (category: {
@@ -26,29 +29,27 @@ export const ItemModal = (props: ItemModalProps) => {
     spent: number;
   }) => {
     const { name, date, spent } = category;
-    props.onAddItemToCategory(props.indexOfCategory, {
-      date: date.format("MM/DD/YYYY"),
-      name: name,
-      spent: spent,
-    });
-  };
-
-  const closeModal = () => {
-    setVisible(false);
+    dispatch(
+      addItemToCategory({
+        indexOfCategory: props.indexOfCategory,
+        itemToAdd: {
+          date: date.format("MM/DD/YYYY"),
+          name: name,
+          spent: spent,
+        },
+      })
+    );
   };
 
   return (
     <div>
-      <Button 
-        className={styles.modalButton} 
-        type="text" 
-        onClick={showModal}>
+      <Button className={styles.modalButton} type="text" onClick={showModal}>
         <PlusOutlined />
       </Button>
       <Modal
         className={styles.ItemModalStyles}
-        onOk={closeModal}
-        onCancel={closeModal}
+        onOk={hideModal}
+        onCancel={hideModal}
         destroyOnClose={true}
         visible={isVisible}
         footer={false}
@@ -104,14 +105,14 @@ export const ItemModal = (props: ItemModalProps) => {
               className={styles.okButton}
               type="primary"
               htmlType="submit"
-              onClick={closeModal}
+              onClick={hideModal}
             >
               Ok
             </Button>
             <Button
               className={styles.cancelButton}
               htmlType="button"
-              onClick={closeModal}
+              onClick={hideModal}
             >
               Cancel
             </Button>
