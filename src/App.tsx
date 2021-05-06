@@ -1,38 +1,65 @@
 import { useState } from "react";
 import "antd/dist/antd.css";
 import { Navbar } from "./components/PageHeader/Navbar";
-import { TableComponent } from "./components/TableComponent/Table";
+import { SpentsTable } from "./components/SpentsTable/SpentsTable";
 import FormCategory from "./components/Modal/CategoryModal/interfaces/FormCategory";
-import FormItem from "./components/Modal/ItemModal/interfaces/FormItem";
+import FormCategoryItem from "./components/Modal/ItemModal/interfaces/FormCategoryItem";
 
 function App() {
-  const [data, setData] = useState<Array<FormCategory>>([]);
+  const [formData, setFormData] = useState<FormCategory[]>([]);
 
-  const handleCreateCategory = (values: FormCategory) => {
-    if (!values.children) values.children = [];
-    setData([...data, values]);
-  };
-  const handleDeleteCategory = (index: number) => {
-    setData([...data.slice(0, index), ...data.slice(index + 1)]);
+  const handleSpentsAddCategory = (categoryToAdd: FormCategory) => {
+    if (!categoryToAdd.items) {
+      categoryToAdd.items = [];
+    }
+    setFormData((prevState) => prevState.concat(categoryToAdd));
   };
 
-  const handleAddItem = (indexCat: number, item: FormItem) => {
-    data[indexCat].children.push(item);
-    setData([...data]);
+  const handleSpentsDeleteCategory = (indexOfCategory: number) => {
+    setFormData((prevState) => [
+      ...prevState.slice(0, indexOfCategory),
+      ...prevState.slice(indexOfCategory + 1),
+    ]);
   };
-  const handleDeleteItem = (indexCat: number, indexItem: number) => {
-    data[indexCat].children.splice(indexItem, 1);
-    setData([...data]);
+
+  const handleSpentsAddCategoryItem = (
+    indexOfCategory: number,
+    itemToAdd: FormCategoryItem
+  ) => {
+    setFormData((prevState) => [
+      ...prevState.slice(0, indexOfCategory),
+      ...prevState.slice(indexOfCategory + 1),
+      {
+        ...prevState[indexOfCategory],
+        items: prevState[indexOfCategory].items.concat(itemToAdd),
+      },
+    ]);
+  };
+  const handleSpentsDeleteCategoryItem = (
+    indexOfCategory: number,
+    indexOfItemInCategory: number
+  ) => {
+    setFormData((prevState) => [
+      ...prevState.slice(0, indexOfCategory),
+      ...prevState.slice(indexOfCategory + 1),
+      {
+        ...prevState[indexOfCategory],
+        items: [
+          ...prevState[indexOfCategory].items.slice(0, indexOfItemInCategory),
+          ...prevState[indexOfCategory].items.slice(indexOfItemInCategory + 1),
+        ],
+      },
+    ]);
   };
 
   return (
     <div>
-      <Navbar onCreateElement={handleCreateCategory} />
-      <TableComponent
-        data={data}
-        onAddItem={handleAddItem}
-        onDeleteItem={handleDeleteItem}
-        onDeleteCategory={handleDeleteCategory}
+      <Navbar onAddCategory={handleSpentsAddCategory} />
+      <SpentsTable
+        formData={formData}
+        onAddItemToCategory={handleSpentsAddCategoryItem}
+        onDeleteItemFromCategory={handleSpentsDeleteCategoryItem}
+        onDeleteCategory={handleSpentsDeleteCategory}
       />
     </div>
   );

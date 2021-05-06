@@ -1,6 +1,6 @@
-import FormItem from "../../ItemModal/interfaces/FormItem";
+import FormCategoryItem from "../../ItemModal/interfaces/FormCategoryItem";
 
 export default interface FormCategory {
   name: string;
-  children: Array<FormItem>;
+  items: FormCategoryItem[];
 }
