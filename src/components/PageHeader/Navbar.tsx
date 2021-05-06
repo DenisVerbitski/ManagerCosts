@@ -13,7 +13,12 @@ export const Navbar = (props: NavbarProps) => {
       <PageHeader
         className={styles.sitepageheader}
         title="Менеджер Расходов"
-        extra={[<CategoryModal key="0" onCreateElement={props.onCreateElement} />]}
+        extra={[
+        <CategoryModal
+         key="0" 
+         onCreateElement={props.onCreateElement} 
+         />
+        ]}
       />
     </div>
   );
