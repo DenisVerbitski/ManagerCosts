@@ -1,10 +1,10 @@
 import { useState } from "react";
-import styles from "./CategoryModal.less";
+import { useDispatch } from "react-redux";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
+import styles from "./CategoryModal.less";
 import FormCategory from "./interfaces/FormCategory";
-import { useDispatch } from "react-redux";
-import { addCategory } from "../../../app/spentsData";
+import { addCategory } from "../../../reducers/spentsData";
 
 export const CategoryModal = () => {
   const dispatch = useDispatch();
@@ -14,13 +14,13 @@ export const CategoryModal = () => {
     setVisible(true);
   };
 
-  const onFinish = (categoryToAdd: FormCategory) => {
-    dispatch(addCategory(categoryToAdd));
+  const hideModal = () => {
     setVisible(false);
   };
 
-  const hideModal = () => {
-    setVisible(false);
+  const onFinish = (categoryToAdd: FormCategory) => {
+    dispatch(addCategory(categoryToAdd));
+    hideModal();
   };
 
   return (

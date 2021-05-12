@@ -1,11 +1,11 @@
+import { useDispatch } from "react-redux";
 import { DeleteFilled } from "@ant-design/icons";
 import { Button } from "antd";
-import { useDispatch } from "react-redux";
+import styles from "./DeleteButton.less";
 import {
   deleteCategory,
   deleteItemFromCategory,
-} from "../../../../app/spentsData";
-import styles from "./DeleteButton.less";
+} from "../../../../reducers/spentsData";
 
 interface IDeleteProps {
   indexOfCategory: number;

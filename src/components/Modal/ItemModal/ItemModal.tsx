@@ -1,11 +1,11 @@
-import styles from "./ItemModal.less";
-import { PlusOutlined } from "@ant-design/icons";
-import { Form, Modal, Button, Input } from "antd";
 import { useState } from "react";
-import { DatePicker } from "antd";
-import moment from "moment";
 import { useDispatch } from "react-redux";
-import { addItemToCategory } from "../../../app/spentsData";
+import { Form, Modal, Button, Input } from "antd";
+import { DatePicker } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import styles from "./ItemModal.less";
+import moment from "moment";
+import { addItemToCategory } from "../../../reducers/spentsData";
 
 interface ItemModalProps {
   indexOfCategory: number;
@@ -33,7 +33,7 @@ export const ItemModal = (props: ItemModalProps) => {
       addItemToCategory({
         indexOfCategory: props.indexOfCategory,
         itemToAdd: {
-          date: date.format("MM/DD/YYYY"),
+          date: date.format("DD/MM/YYYY"),
           name: name,
           spent: spent,
         },

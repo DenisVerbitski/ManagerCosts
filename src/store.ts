@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import spentsDataReducer from "./spentsData";
+import spentsDataReducer from "./reducers/spentsData";
 
 export const store = configureStore({
   reducer: {
