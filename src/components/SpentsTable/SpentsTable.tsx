@@ -9,7 +9,7 @@ import SpentsTableCategory from "./interfaces/SpentsTableCategory";
 import SpentsTableCategoryItem from "./interfaces/SpentsTableCategoryItem";
 import Actions from "./Actions/Actions";
 import DeleteButton from "./Actions/DeleteButton/DeleteButton";
-import { selectSpentsData } from "../../selectors/selectors";
+import { selectSpentsData } from "../../selectors/spentsData";
 
 export const SpentsTable = () => {
   const CURRENCY_BYN = "BYN";
