@@ -1,9 +1,12 @@
 import { useState } from "react";
 import "antd/dist/antd.css";
+import styles from "./App.less";
 import { Navbar } from "./components/PageHeader/Navbar";
 import { SpentsTable } from "./components/SpentsTable/SpentsTable";
 import FormCategory from "./components/Modal/CategoryModal/interfaces/FormCategory";
 import FormCategoryItem from "./components/Modal/ItemModal/interfaces/FormCategoryItem";
+import Layout from "antd/lib/layout/layout";
+import { PageFooter } from "./components/PageFooter/PageFooter";
 
 function App() {
   const [formData, setFormData] = useState<FormCategory[]>([]);
@@ -53,15 +56,22 @@ function App() {
   };
 
   return (
-    <div>
-      <Navbar onAddCategory={handleSpentsAddCategory} />
-      <SpentsTable
-        formData={formData}
-        onAddItemToCategory={handleSpentsAddCategoryItem}
-        onDeleteItemFromCategory={handleSpentsDeleteCategoryItem}
-        onDeleteCategory={handleSpentsDeleteCategory}
-      />
-    </div>
+    <Layout className={styles.positionElement}>
+      <Layout className={styles.positionHeader}>
+        <Navbar onAddCategory={handleSpentsAddCategory} />
+      </Layout>
+      <Layout className={styles.positionContent}>
+        <SpentsTable
+          formData={formData}
+          onAddItemToCategory={handleSpentsAddCategoryItem}
+          onDeleteItemFromCategory={handleSpentsDeleteCategoryItem}
+          onDeleteCategory={handleSpentsDeleteCategory}
+        />
+      </Layout>
+      <Layout className={styles.positionFooter}>
+        <PageFooter />
+      </Layout>
+    </Layout>
   );
 }
 

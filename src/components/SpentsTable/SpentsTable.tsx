@@ -73,11 +73,13 @@ export const SpentsTable = (props: SpentsTableProps) => {
       spent: Number(spent).toFixed(2) + " " + CURRENCY_BYN,
       key: indexOfItemInCategory,
       actionButtons: (
-        <DeleteButton
-          indexOfCategory={indexOfCategory}
-          indexOfItemInCategory={indexOfItemInCategory}
-          onClick={handleDeleteItemClick}
-        />
+        <div className={styles.itemDeleteButton}>
+          <DeleteButton
+            indexOfCategory={indexOfCategory}
+            indexOfItemInCategory={indexOfItemInCategory}
+            onClick={handleDeleteItemClick}
+          />
+        </div>
       ),
     };
     return categoryItem;
@@ -132,11 +134,18 @@ export const SpentsTable = (props: SpentsTableProps) => {
       width: "1%",
     },
   ];
-
+  const tittleTable = document.getElementsByClassName(
+    "ant-empty-description"
+  )[0];
+  if (tittleTable) {
+    tittleTable.innerHTML = "Нет Расходов";
+  }
   return (
     <div className={styles.margin}>
       <Table
-        expandable={{ childrenColumnName: "items" }}
+        expandable={{
+          childrenColumnName: "items",
+        }}
         className={styles.TableStyles}
         showHeader={false}
         dataSource={tableData}

@@ -1,19 +1,26 @@
 .margin {
-  margin-top: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.itemDeleteButton {
+  float: right;
 }
 .TableStyles {
   width: 1000px;
   margin: auto;
   font-weight: 600;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.2);
   :global .ant-table-row-level-0 {
-    background-color: #b7eb8f;
-    width: 1000px;
+    background-color: #d3adf7;
   }
   :global .ant-table-row-expand-icon {
-    background-color: #b7eb8f;
-    border: 1px solid #b7eb8f;
+    background-color: #d3adf7;
+    border: 1px solid #d3adf7;
   }
   :global .ant-table-tbody > tr.ant-table-row:hover > td {
     background: unset;
+  }
+  :global .ant-table-tbody > tr.ant-table-row > td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   }
 }

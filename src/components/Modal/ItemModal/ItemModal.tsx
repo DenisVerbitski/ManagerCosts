@@ -39,10 +39,11 @@ export const ItemModal = (props: ItemModalProps) => {
 
   return (
     <div>
-      <Button 
-        className={styles.modalButton} 
-        type="text" 
-        onClick={showModal}>
+      <Button
+        className={styles.itemModalButton}
+        type="text"
+        onClick={showModal}
+      >
         <PlusOutlined />
       </Button>
       <Modal
@@ -106,14 +107,14 @@ export const ItemModal = (props: ItemModalProps) => {
               htmlType="submit"
               onClick={closeModal}
             >
-              Ok
+              Oк
             </Button>
             <Button
               className={styles.cancelButton}
               htmlType="button"
               onClick={closeModal}
             >
-              Cancel
+              Отмена
             </Button>
           </Form.Item>
         </Form>

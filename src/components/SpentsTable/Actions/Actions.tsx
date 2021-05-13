@@ -4,7 +4,10 @@ import FormCategoryItem from "../../Modal/ItemModal/interfaces/FormCategoryItem"
 import DeleteButton from "./DeleteButton/DeleteButton";
 
 interface IActionsProps {
-  onAddItemToCategory: (indexOfCategory: number, itemToAdd: FormCategoryItem) => void;
+  onAddItemToCategory: (
+    indexOfCategory: number,
+    itemToAdd: FormCategoryItem
+  ) => void;
   onDeleteCategory: (indexOfCategory: number) => void;
   indexOfCategory: number;
 }
@@ -16,7 +19,10 @@ const Actions = (props: IActionsProps) => {
         indexOfCategory={props.indexOfCategory}
         onClick={props.onDeleteCategory}
       />
-      <ItemModal onAddItemToCategory={props.onAddItemToCategory} indexOfCategory={props.indexOfCategory} />
+      <ItemModal
+        onAddItemToCategory={props.onAddItemToCategory}
+        indexOfCategory={props.indexOfCategory}
+      />
     </Space>
   );
 };

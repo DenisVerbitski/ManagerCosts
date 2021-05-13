@@ -32,7 +32,7 @@ export const CategoryModal = (props: CategoryModalProps) => {
     <div>
       <Button
         icon={<PlusOutlined />}
-        className={styles.modalButton}
+        className={styles.categoryModalButton}
         type="text"
         onClick={showModal}
       >
@@ -40,11 +40,11 @@ export const CategoryModal = (props: CategoryModalProps) => {
       </Button>
 
       <Modal
-      className={styles.CategoryModalStyles}
+        className={styles.CategoryModalStyles}
         onCancel={handleCancel}
         destroyOnClose={true}
         visible={isVisible}
-        title="Добавить категорию"
+        title="Введите название категории"
         footer={false}
       >
         <Form onFinish={onFinish}>
@@ -66,14 +66,14 @@ export const CategoryModal = (props: CategoryModalProps) => {
               htmlType="submit"
               onClick={handleOk}
             >
-              Ok
+              Oк
             </Button>
             <Button
               className={styles.cancelButton}
               htmlType="button"
               onClick={handleCancel}
             >
-              Cancel
+              Отмена
             </Button>
           </Form.Item>
         </Form>
