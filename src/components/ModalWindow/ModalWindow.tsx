@@ -3,13 +3,12 @@ import moment from "moment";
 import { Form, Modal, Button, Input } from "antd";
 import { DatePicker } from "antd";
 import styles from "./ModalWindow.less";
-import { ModalDatePicker } from "./ModalDatePicker";
-import { ModalInput } from "./ModalInput";
+import { ModalElement } from "./ModalElement";
 
 interface ModalWindowProps {
   title: string;
   isVisible: boolean;
-  fields: (ModalInput | ModalDatePicker)[];
+  fields: ModalElement[];
   onFinish?: (values: any) => void;
   onClose?: () => void;
 }
@@ -68,20 +67,21 @@ export const ModalWindow = (props: ModalWindowProps) => {
 
   const createFields = (): ReactElement[] => {
     const fields: ReactElement[] = props.fields.map((field, fieldIndex) => {
-      if (field.type === "input") {
+      const { label, name, placeholder, type, dataType } = field;
+      if (type === "input" && dataType) {
         let defaultFocus: boolean = false;
         if (fieldIndex === 0) {
           defaultFocus = true;
         }
         return createInput(
-          field.name,
-          field.label,
-          field.placeholder,
-          field.dataType,
+          name,
+          label,
+          placeholder,
+          dataType,
           defaultFocus
         );
       }
-      return createDatePicker(field.name, field.label, field.placeholder);
+      return createDatePicker(name, label, placeholder);
     });
 
     return fields;

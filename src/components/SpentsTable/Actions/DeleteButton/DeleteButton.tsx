@@ -17,7 +17,7 @@ const DeleteButton = (props: IDeleteProps) => {
   const { indexOfCategory, indexOfItemInCategory } = props;
   const onClick = () => {
     if (indexOfItemInCategory === undefined) {
-      dispatch(deleteCategory(indexOfCategory));
+      dispatch(deleteCategory({ indexOfCategoryToDelete: indexOfCategory }));
     } else {
       dispatch(
         deleteItemFromCategory({

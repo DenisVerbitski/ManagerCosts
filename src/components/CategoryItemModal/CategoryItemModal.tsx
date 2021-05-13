@@ -5,8 +5,7 @@ import styles from "./CategoryItemModal.less";
 import moment from "moment";
 import { addItemToCategory } from "../../reducers/spentsData";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
-import { ModalInput } from "../ModalWindow/ModalInput";
-import { ModalDatePicker } from "../ModalWindow/ModalDatePicker";
+import { ModalElement } from "../ModalWindow/ModalElement";
 import { Button } from "antd";
 
 interface CategoryItemModalProps {
@@ -43,7 +42,7 @@ export const CategoryItemModal = (props: CategoryItemModalProps) => {
     );
   };
 
-  const fields: (ModalInput | ModalDatePicker)[] = [
+  const fields: ModalElement[] = [
     {
       name: "name",
       type: "input",

@@ -6,9 +6,8 @@ import styles from "./CategoryModal.less";
 import FormCategory from "./interfaces/FormCategory";
 import { addCategory } from "../../reducers/spentsData";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
-import { ModalDatePicker } from "../ModalWindow/ModalDatePicker";
 
-import { ModalInput } from "../ModalWindow/ModalInput";
+import { ModalElement } from "../ModalWindow/ModalElement";
 
 export const CategoryModal = () => {
   const dispatch = useDispatch();
@@ -23,11 +22,11 @@ export const CategoryModal = () => {
   };
 
   const onFinish = (categoryToAdd: FormCategory) => {
-    dispatch(addCategory(categoryToAdd));
+    dispatch(addCategory({categoryToAdd}));
     hideModal();
   };
 
-  const fields: (ModalInput | ModalDatePicker)[] = [
+  const fields: ModalElement[] = [
     {
       name: "name",
       type: "input",
