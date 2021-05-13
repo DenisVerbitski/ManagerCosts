@@ -31,7 +31,7 @@ export const CategoryModal = () => {
     {
       name: "name",
       type: "input",
-      label: "Категория",
+      label: "Пожалуйста введите категорию",
       placeholder: "Название категории",
       dataType: "text",
     },

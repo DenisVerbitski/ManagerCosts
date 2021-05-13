@@ -47,21 +47,21 @@ export const CategoryItemModal = (props: CategoryItemModalProps) => {
     {
       name: "name",
       type: "input",
-      label: "Название",
-      placeholder: "Название",
+      label: "Пожалуйста введите название заведения",
+      placeholder: "Название заведения",
       dataType: "text",
     },
     {
       name: "date",
       type: "datePicker",
-      label: "Дата",
+      label: "Пожалуйста введите дату",
       placeholder: "Дата",
     },
     {
       name: "spent",
       type: "input",
-      label: "Расходы",
-      placeholder: "Расходы",
+      label: "Пожалуйста введите колличество потраченых денег",
+      placeholder: "Колличество потраченых денег в рублях",
       dataType: "number",
     },
   ];
