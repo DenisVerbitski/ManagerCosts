@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import styles from "./CategoryModal.less";
+
 import FormCategory from "./interfaces/FormCategory";
 import { addCategory } from "../../reducers/spentsData";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
+import ModalElement from "../ModalWindow/interfaces/ModalElement";
 
-import { ModalElement } from "../ModalWindow/ModalElement";
+import styles from "./CategoryModal.less";
 
 export const CategoryModal = () => {
   const dispatch = useDispatch();

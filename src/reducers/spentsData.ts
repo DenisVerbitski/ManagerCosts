@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import FormCategory from "../components/CategoryModal/interfaces/FormCategory";
 import FormCategoryItem from "../components/CategoryItemModal/interfaces/FormCategoryItem";
 

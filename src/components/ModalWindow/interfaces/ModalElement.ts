@@ -1,4 +1,4 @@
-export interface ModalElement {
+export default interface ModalElement {
   name: string;
   type: "input" | "datePicker";
   label: string;

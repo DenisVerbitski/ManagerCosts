@@ -2,8 +2,10 @@ import { ReactElement } from "react";
 import moment from "moment";
 import { Form, Modal, Button, Input } from "antd";
 import { DatePicker } from "antd";
+
+import ModalElement from "./interfaces/ModalElement";
+
 import styles from "./ModalWindow.less";
-import { ModalElement } from "./ModalElement";
 
 interface ModalWindowProps {
   title: string;

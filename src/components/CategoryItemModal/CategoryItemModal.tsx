@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { PlusOutlined } from "@ant-design/icons";
-import styles from "./CategoryItemModal.less";
 import moment from "moment";
+import { Button } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+
 import { addItemToCategory } from "../../reducers/spentsData";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
-import { ModalElement } from "../ModalWindow/ModalElement";
-import { Button } from "antd";
+import ModalElement from "../ModalWindow/interfaces/ModalElement";
+
+import styles from "./CategoryItemModal.less";
 
 interface CategoryItemModalProps {
   indexOfCategory: number;
