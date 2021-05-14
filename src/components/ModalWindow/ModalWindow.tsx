@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import moment from "moment";
 import { Store } from "rc-field-form/lib/interface";
-import { Form, Modal, Button, Input } from "antd";
+import { Form, Modal, Button, Input, InputNumber } from "antd";
 import { DatePicker } from "antd";
 
 import ModalElement from "./interfaces/ModalElement";
@@ -41,8 +41,31 @@ export const ModalWindow = (props: ModalWindowProps) => {
     );
   };
 
+  const createInputNumber = (field: ModalElement) => {
+    const { label, name, placeholder, dataType, defaultFocus } = field;
+
+    return (
+      <Form.Item
+        name={name}
+        rules={[
+          {
+            required: true,
+            message: label,
+          },
+        ]}
+      >
+        <InputNumber
+          autoFocus={defaultFocus}
+          type={dataType}
+          placeholder={placeholder}
+          min={0}
+        />
+      </Form.Item>
+    );
+  };
+
   const createDatePicker = (field: ModalElement) => {
-    const { name, label, placeholder } = field;
+    const { name, label, placeholder, defaultFocus } = field;
     initialValues[name] = moment();
     return (
       <Form.Item
@@ -55,6 +78,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
         ]}
       >
         <DatePicker
+          autoFocus={defaultFocus}
           className={styles.date}
           placeholder={placeholder}
           format="DD/MM/YYYY"
@@ -82,6 +106,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
 
   const fieldTypeMap = new Map([
     ["input", createInput],
+    ["inputNumber", createInputNumber],
     ["datePicker", createDatePicker],
   ]);
 
@@ -93,7 +118,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
       destroyOnClose={true}
       visible={props.isVisible}
       footer={false}
-      title="Введите данных о расходах"
+      title="Введите данные о расходах"
     >
       <Form onFinish={props.onFinish} initialValues={initialValues}>
         {createFields()}

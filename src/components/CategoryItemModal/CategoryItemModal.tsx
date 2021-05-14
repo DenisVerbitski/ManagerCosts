@@ -60,9 +60,9 @@ export const CategoryItemModal = (props: CategoryItemModalProps) => {
     },
     {
       name: "spent",
-      type: "input",
+      type: "inputNumber",
       label: "Пожалуйста введите колличество потраченых денег",
-      placeholder: "Колличество потраченых денег в рублях",
+      placeholder: "0",
       dataType: "number",
     },
   ];
