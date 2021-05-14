@@ -81,8 +81,8 @@ export const ModalWindow = (props: ModalWindowProps) => {
   };
 
   const fieldTypeMap = new Map([
-    ["input", (field: ModalElement) => createInput(field)],
-    ["datePicker", (field: ModalElement) => createDatePicker(field)],
+    ["input", createInput],
+    ["datePicker", createDatePicker],
   ]);
 
   return (
