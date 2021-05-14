@@ -1,45 +1,22 @@
-import { Table } from "antd";
-import { Empty } from "antd";
-import styles from "./SpentsTable.less";
-import FormCategory from "../Modal/CategoryModal/interfaces/FormCategory";
-import FormCategoryItem from "../Modal/ItemModal/interfaces/FormCategoryItem";
-import { useState } from "react";
 import React from "react";
-import SpentsTableCategory from "./interfaces/SpentsTableCategory";
-import SpentsTableCategoryItem from "./interfaces/SpentsTableCategoryItem";
-import Actions from "./Actions/Actions";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Table } from "antd";
+
+import { selectSpentsData } from "../../selectors/spentsData";
 import DeleteButton from "./Actions/DeleteButton/DeleteButton";
+import Actions from "./Actions/Actions";
+import FormCategoryItem from "../CategoryItemModal/interfaces/FormCategoryItem";
+import FormCategory from "../CategoryModal/interfaces/FormCategory";
+import SpentsTableCategoryItem from "./interfaces/SpentsTableCategoryItem";
+import SpentsTableCategory from "./interfaces/SpentsTableCategory";
 
-interface SpentsTableProps {
-  formData: FormCategory[];
-  onDeleteCategory: (indexOfCategory: number) => void;
-  onAddItemToCategory: (
-    indexOfCategory: number,
-    itemToAdd: FormCategoryItem
-  ) => void;
-  onDeleteItemFromCategory: (
-    indexOfCategory: number,
-    indexOfItemInCategory: number
-  ) => void;
-}
+import styles from "./SpentsTable.less";
 
-export const SpentsTable = (props: SpentsTableProps) => {
+export const SpentsTable = () => {
   const CURRENCY_BYN = "BYN";
+  const spentsData = useSelector(selectSpentsData);
   const [tableData, setTableData] = useState<SpentsTableCategory[]>([]);
-  const {
-    formData,
-    onAddItemToCategory,
-    onDeleteCategory,
-    onDeleteItemFromCategory,
-  } = props;
-
-  const handleDeleteItemClick = (
-    indexOfCategory: number,
-    indexOfItemInCategory?: number
-  ) => {
-    if (indexOfItemInCategory !== undefined)
-      onDeleteItemFromCategory(indexOfCategory, indexOfItemInCategory);
-  };
 
   const convertCategory = (
     formCategory: FormCategory,
@@ -50,13 +27,7 @@ export const SpentsTable = (props: SpentsTableProps) => {
       name: formCategory.name,
       date: "Дата",
       spent: "Потрачено",
-      actionButtons: (
-        <Actions
-          onAddItemToCategory={onAddItemToCategory}
-          onDeleteCategory={onDeleteCategory}
-          indexOfCategory={indexOfCategory}
-        />
-      ),
+      actionButtons: <Actions indexOfCategory={indexOfCategory} />,
       items: [],
     };
     return category;
@@ -78,7 +49,6 @@ export const SpentsTable = (props: SpentsTableProps) => {
           <DeleteButton
             indexOfCategory={indexOfCategory}
             indexOfItemInCategory={indexOfItemInCategory}
-            onClick={handleDeleteItemClick}
           />
         </div>
       ),
@@ -87,10 +57,10 @@ export const SpentsTable = (props: SpentsTableProps) => {
   };
 
   const convertFormToTable = (
-    formData: FormCategory[]
+    spentsData: FormCategory[]
   ): SpentsTableCategory[] => {
     const convertedData: SpentsTableCategory[] = [];
-    formData.forEach((formCategory, indexOfCategory) => {
+    spentsData.forEach((formCategory, indexOfCategory) => {
       const tableCategory = convertCategory(formCategory, indexOfCategory);
 
       formCategory.items.forEach((formCategoryItem, indexOfItemInCategory) => {
@@ -109,9 +79,10 @@ export const SpentsTable = (props: SpentsTableProps) => {
   };
 
   React.useEffect(() => {
-    const convertedData = convertFormToTable(formData);
+    const convertedData = convertFormToTable(spentsData);
     setTableData([...convertedData]);
-  }, [formData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [spentsData]);
 
   const columns = [
     {

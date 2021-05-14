@@ -1,19 +1,14 @@
-import { CategoryModal } from "../Modal/CategoryModal/CategoryModal";
-import FormCategory from "../Modal/CategoryModal/interfaces/FormCategory";
-import styles from "../PageHeader/Navbar.less";
 import { PageHeader } from "antd";
+import { CategoryModal } from "../CategoryModal/CategoryModal";
+import styles from "./Navbar.less";
 
-interface NavbarProps {
-  onAddCategory: (category: FormCategory) => void;
-}
-
-export const Navbar = (props: NavbarProps) => {
+export const Navbar = () => {
   return (
     <div>
       <PageHeader
         className={styles.sitepageheader}
         title="Менеджер Расходов"
-        extra={[<CategoryModal key="0" onAddCategory={props.onAddCategory} />]}
+        extra={[<CategoryModal key="0" />]}
       />
     </div>
   );

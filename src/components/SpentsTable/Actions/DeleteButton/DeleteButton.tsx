@@ -1,19 +1,31 @@
-import { DeleteFilled } from "@ant-design/icons";
-import { Button } from "antd";
-import styles from "./DeleteButton.less";
+import { useDispatch } from "react-redux";
+import {
+  deleteCategory,
+  deleteItemFromCategory,
+} from "../../../../reducers/spentsData";
 
-interface IDeleteProps {
-  onClick: (indexOfCategory: number, indexOfItemInCategory?: number) => void;
+import { Button } from "antd";
+import { DeleteFilled } from "@ant-design/icons";
+
+import styles from "./DeleteButton.less";
+interface DeleteButtonProps {
   indexOfCategory: number;
   indexOfItemInCategory?: number;
 }
 
-const DeleteButton = (props: IDeleteProps) => {
+const DeleteButton = (props: DeleteButtonProps) => {
+  const dispatch = useDispatch();
+  const { indexOfCategory, indexOfItemInCategory } = props;
   const onClick = () => {
-    if (props.indexOfItemInCategory === undefined) {
-      props.onClick(props.indexOfCategory);
+    if (indexOfItemInCategory === undefined) {
+      dispatch(deleteCategory({ indexOfCategoryToDelete: indexOfCategory }));
     } else {
-      props.onClick(props.indexOfCategory, props.indexOfItemInCategory);
+      dispatch(
+        deleteItemFromCategory({
+          indexOfCategory,
+          indexOfItemInCategory,
+        })
+      );
     }
   };
 
