@@ -1,4 +1,5 @@
 import { Table } from "antd";
+import { Empty } from "antd";
 import styles from "./SpentsTable.less";
 import FormCategory from "../Modal/CategoryModal/interfaces/FormCategory";
 import FormCategoryItem from "../Modal/ItemModal/interfaces/FormCategoryItem";
@@ -134,15 +135,25 @@ export const SpentsTable = (props: SpentsTableProps) => {
       width: "1%",
     },
   ];
-  const tittleTable = document.getElementsByClassName(
-    "ant-empty-description"
-  )[0];
-  if (tittleTable) {
-    tittleTable.innerHTML = "Нет Расходов";
-  }
+  let locale = {
+    emptyText: (
+      <Empty
+        image="https://img.icons8.com/ios/452/file--v1.png"
+        imageStyle={{
+          height: 80,
+        }}
+        description={
+          <span>
+            Нет расходов
+          </span>
+        }
+      />
+    ),
+  };
   return (
     <div className={styles.margin}>
       <Table
+        locale={locale}
         expandable={{
           childrenColumnName: "items",
         }}
