@@ -2,14 +2,16 @@ import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Table } from "antd";
-import styles from "./SpentsTable.less";
-import FormCategory from "../Modal/CategoryModal/interfaces/FormCategory";
-import FormCategoryItem from "../Modal/ItemModal/interfaces/FormCategoryItem";
-import SpentsTableCategory from "./interfaces/SpentsTableCategory";
-import SpentsTableCategoryItem from "./interfaces/SpentsTableCategoryItem";
-import Actions from "./Actions/Actions";
-import DeleteButton from "./Actions/DeleteButton/DeleteButton";
+
 import { selectSpentsData } from "../../selectors/spentsData";
+import DeleteButton from "./Actions/DeleteButton/DeleteButton";
+import Actions from "./Actions/Actions";
+import FormCategoryItem from "../CategoryItemModal/interfaces/FormCategoryItem";
+import FormCategory from "../CategoryModal/interfaces/FormCategory";
+import SpentsTableCategoryItem from "./interfaces/SpentsTableCategoryItem";
+import SpentsTableCategory from "./interfaces/SpentsTableCategory";
+
+import styles from "./SpentsTable.less";
 
 export const SpentsTable = () => {
   const CURRENCY_BYN = "BYN";

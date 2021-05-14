@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import FormCategory from "../components/Modal/CategoryModal/interfaces/FormCategory";
-import FormCategoryItem from "../components/Modal/ItemModal/interfaces/FormCategoryItem";
+
+import FormCategory from "../components/CategoryModal/interfaces/FormCategory";
+import FormCategoryItem from "../components/CategoryItemModal/interfaces/FormCategoryItem";
 
 export interface SpentsDataState {
   spentsData: FormCategory[];
@@ -18,22 +19,27 @@ export const spentsDataSlice = createSlice({
       state,
       action: {
         type: string;
-        payload: FormCategory;
+        payload: {
+          categoryToAdd: FormCategory;
+        };
       }
     ) => {
-      if (!action.payload.items) {
-        action.payload.items = [];
+      const categoryToAdd = action.payload.categoryToAdd;
+      if (!categoryToAdd.items) {
+        categoryToAdd.items = [];
       }
-      state.spentsData.push(action.payload);
+      state.spentsData.push(categoryToAdd);
     },
     deleteCategory: (
       state,
       action: {
         type: string;
-        payload: number;
+        payload: {
+          indexOfCategoryToDelete: number;
+        };
       }
     ) => {
-      state.spentsData.splice(action.payload, 1);
+      state.spentsData.splice(action.payload.indexOfCategoryToDelete, 1);
     },
     addItemToCategory: (
       state,
@@ -45,9 +51,8 @@ export const spentsDataSlice = createSlice({
         };
       }
     ) => {
-      state.spentsData[action.payload.indexOfCategory].items.push(
-        action.payload.itemToAdd
-      );
+      const { indexOfCategory, itemToAdd } = action.payload;
+      state.spentsData[indexOfCategory].items.push(itemToAdd);
     },
     deleteItemFromCategory: (
       state,
@@ -59,10 +64,8 @@ export const spentsDataSlice = createSlice({
         };
       }
     ) => {
-      state.spentsData[action.payload.indexOfCategory].items.splice(
-        action.payload.indexOfItemInCategory,
-        1
-      );
+      const { indexOfCategory, indexOfItemInCategory } = action.payload;
+      state.spentsData[indexOfCategory].items.splice(indexOfItemInCategory, 1);
     },
   },
 });

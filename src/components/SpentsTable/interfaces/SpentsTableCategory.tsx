@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+
 import SpentsTableCategoryItem from "./SpentsTableCategoryItem";
 
 export default interface SpentsTableCategory {
