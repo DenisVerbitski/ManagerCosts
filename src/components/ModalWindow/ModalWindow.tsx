@@ -12,17 +12,13 @@ interface ModalWindowProps {
   isVisible: boolean;
   fields: ModalElement[];
   onFinish?: (values: any) => void;
-  onClose?: () => void;
+  onHideModal?: () => void;
 }
 
 export const ModalWindow = (props: ModalWindowProps) => {
-  const createInput = (
-    name: string,
-    label: string,
-    placeholder: string,
-    dataType: string,
-    defaultFocus: boolean
-  ) => {
+  const createInput = (field: ModalElement) => {
+    const { label, name, placeholder, dataType, defaultFocus } = field;
+
     return (
       <Form.Item
         name={name}
@@ -34,7 +30,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
         ]}
       >
         <Input
-          {...(defaultFocus ? { ref: (ref) => ref?.focus() } : {})}
+          autoFocus={defaultFocus}
           type={dataType}
           placeholder={placeholder}
         />
@@ -42,11 +38,8 @@ export const ModalWindow = (props: ModalWindowProps) => {
     );
   };
 
-  const createDatePicker = (
-    name: string,
-    label: string,
-    placeholder: string
-  ) => {
+  const createDatePicker = (field: ModalElement) => {
+    const { name, label, placeholder } = field;
     return (
       <Form.Item
         name={name}
@@ -61,39 +54,39 @@ export const ModalWindow = (props: ModalWindowProps) => {
         <DatePicker
           className={styles.date}
           placeholder={placeholder}
-          format="MM/DD/YYYY"
+          format="DD/MM/YYYY"
         />
       </Form.Item>
     );
   };
 
   const createFields = (): ReactElement[] => {
-    const fields: ReactElement[] = props.fields.map((field, fieldIndex) => {
-      const { label, name, placeholder, type, dataType } = field;
-      if (type === "input" && dataType) {
-        let defaultFocus: boolean = false;
-        if (fieldIndex === 0) {
-          defaultFocus = true;
-        }
-        return createInput(
-          name,
-          label,
-          placeholder,
-          dataType,
-          defaultFocus
-        );
+    const modalFields: ReactElement[] = [];
+    props.fields.forEach((field, fieldIndex) => {
+      const fieldCreator = fieldTypeMap.get(field.type);
+
+      if (!fieldIndex) {
+        field.defaultFocus = true;
       }
-      return createDatePicker(name, label, placeholder);
+
+      if (fieldCreator) {
+        modalFields.push(fieldCreator(field));
+      }
     });
 
-    return fields;
+    return modalFields;
   };
+
+  const fieldTypeMap = new Map([
+    ["input", (field: ModalElement) => createInput(field)],
+    ["datePicker", (field: ModalElement) => createDatePicker(field)],
+  ]);
 
   return (
     <Modal
       className={styles.ItemModalStyles}
-      onOk={props.onClose}
-      onCancel={props.onClose}
+      onOk={props.onHideModal}
+      onCancel={props.onHideModal}
       destroyOnClose={true}
       visible={props.isVisible}
       footer={false}
@@ -106,14 +99,14 @@ export const ModalWindow = (props: ModalWindowProps) => {
             className={styles.okButton}
             type="primary"
             htmlType="submit"
-            onClick={props.onClose}
+            onClick={props.onHideModal}
           >
             Ok
           </Button>
           <Button
             className={styles.cancelButton}
             htmlType="button"
-            onClick={props.onClose}
+            onClick={props.onHideModal}
           >
             Cancel
           </Button>

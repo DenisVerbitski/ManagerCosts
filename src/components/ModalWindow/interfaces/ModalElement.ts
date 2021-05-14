@@ -4,4 +4,5 @@ export default interface ModalElement {
   label: string;
   placeholder: string;
   dataType?: "text" | "number";
+  defaultFocus?: boolean;
 }

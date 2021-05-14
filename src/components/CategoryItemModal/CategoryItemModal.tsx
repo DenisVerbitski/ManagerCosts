@@ -78,7 +78,7 @@ export const CategoryItemModal = (props: CategoryItemModalProps) => {
         title="Добавить категорию"
         fields={fields}
         isVisible={isVisible}
-        onClose={hideModal}
+        onHideModal={hideModal}
       />
     </div>
   );
