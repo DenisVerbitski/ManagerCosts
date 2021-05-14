@@ -53,7 +53,7 @@ export const ItemModal = (props: ItemModalProps) => {
         destroyOnClose={true}
         visible={isVisible}
         footer={false}
-        title="Введите данных о расходах"
+        title="Данные о расходах"
       >
         <Form onFinish={onFinish}>
           <Form.Item
@@ -61,14 +61,11 @@ export const ItemModal = (props: ItemModalProps) => {
             rules={[
               {
                 required: true,
-                message: "Пожалуйста введите название заведения",
+                message: "Пожалуйста введите название",
               },
             ]}
           >
-            <Input
-              ref={(ref) => ref?.focus()}
-              placeholder="Название заведения"
-            />
+            <Input ref={(ref) => ref?.focus()} placeholder="Название" />
           </Form.Item>
           <Form.Item
             name="date"

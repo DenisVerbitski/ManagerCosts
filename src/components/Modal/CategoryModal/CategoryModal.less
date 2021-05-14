@@ -1,34 +1,60 @@
-.categoryModalButton:hover {
-  background-color: #dbb9fa;
-}
-span {
+.categoryModalButton {
   font-weight: 600;
+  color: #c5e1a5;
 }
-.modalButton {
-    margin-top: 5px;
+.categoryModalButton:hover {
+  background-color: #8bc34a;
+  color: #33691e;
 }
 .okButton {
+  background: #5a9216;
+  border-color: #5a9216;
+  color: #c5e1a5;
   float: right;
 }
+.okButton:hover {
+  background: #8bc34a;
+  color: #33691e;
+  border-color: #5a9216;
+}
 .cancelButton {
+  background: #5a9216;
+  border-color: #5a9216;
+  color: #c5e1a5;
   float: right;
   margin-right: 5px;
 }
+.cancelButton:hover {
+  background: #8bc34a;
+  color: #33691e;
+  border-color: #5a9216;
+}
 .CategoryModalStyles {
-  :global .ant-modal-body {
-    padding: 24px 24px 1px 24px;
-  }
   :global .ant-modal-header {
-    background: #d3adf7;
-    border-bottom: 1px solid #f0f0f0;
+    background: #5a9216;
+    border-bottom: 1px solid #5a9216;
+  }
+  :global .ant-modal-title {
+    color: #c5e1a5;
   }
   :global .ant-modal-close {
-    color: black;
+    color: #c5e1a5;
+  }
+  :global .ant-modal-close:hover {
+    color: #33691e;
+  }
+  :global .ant-modal-body {
+    background: #8bc34a;
+    padding: 24px 24px 1px 24px;
   }
   :global .ant-input {
-    border: 1px solid #f0f0f0;
+    border: 1px solid #5a9216;
+    background: #8bc34a;
   }
-  :global .ant-btn {
-    border-color: #f0f0f0;
+  :global .ant-input:hover {
+    background: unset;
+  }
+  input::-webkit-input-placeholder {
+    color: #33691e;
   }
 }

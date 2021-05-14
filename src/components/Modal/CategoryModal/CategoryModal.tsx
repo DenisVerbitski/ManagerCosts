@@ -44,7 +44,7 @@ export const CategoryModal = (props: CategoryModalProps) => {
         onCancel={handleCancel}
         destroyOnClose={true}
         visible={isVisible}
-        title="Введите название категории"
+        title="Категории"
         footer={false}
       >
         <Form onFinish={onFinish}>
