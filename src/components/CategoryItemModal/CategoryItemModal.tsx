@@ -75,7 +75,7 @@ export const CategoryItemModal = (props: CategoryItemModalProps) => {
 
       <ModalWindow
         onFinish={onFinish}
-        title="Добавить категорию"
+        title="Добавить заведение"
         fields={fields}
         isVisible={isVisible}
         onHideModal={hideModal}

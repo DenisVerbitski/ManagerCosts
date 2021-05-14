@@ -17,6 +17,7 @@ interface ModalWindowProps {
 }
 
 export const ModalWindow = (props: ModalWindowProps) => {
+  const { fields, isVisible, title, onFinish, onHideModal } = props;
   let initialValues: Store = {};
 
   const createInput = (field: ModalElement) => {
@@ -89,7 +90,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
 
   const createFields = (): ReactElement[] => {
     const modalFields: ReactElement[] = [];
-    props.fields.forEach((field, fieldIndex) => {
+    fields.forEach((field, fieldIndex) => {
       const fieldCreator = fieldTypeMap.get(field.type);
 
       if (!fieldIndex) {
@@ -113,28 +114,28 @@ export const ModalWindow = (props: ModalWindowProps) => {
   return (
     <Modal
       className={styles.ItemModalStyles}
-      onOk={props.onHideModal}
-      onCancel={props.onHideModal}
+      onOk={onHideModal}
+      onCancel={onHideModal}
       destroyOnClose={true}
-      visible={props.isVisible}
+      visible={isVisible}
       footer={false}
-      title="Введите данные о расходах"
+      title={title}
     >
-      <Form onFinish={props.onFinish} initialValues={initialValues}>
+      <Form onFinish={onFinish} initialValues={initialValues}>
         {createFields()}
         <Form.Item>
           <Button
             className={styles.okButton}
             type="primary"
             htmlType="submit"
-            onClick={props.onHideModal}
+            onClick={onHideModal}
           >
             Ok
           </Button>
           <Button
             className={styles.cancelButton}
             htmlType="button"
-            onClick={props.onHideModal}
+            onClick={onHideModal}
           >
             Cancel
           </Button>
