@@ -1,31 +1,26 @@
 import { useState } from "react";
-import styles from "./CategoryModal.less";
+import { useDispatch } from "react-redux";
 import { PlusOutlined } from "@ant-design/icons";
 import { Form, Modal, Button, Input } from "antd";
+import styles from "./CategoryModal.less";
 import FormCategory from "./interfaces/FormCategory";
+import { addCategory } from "../../../reducers/spentsData";
 
-interface CategoryModalProps {
-  onAddCategory: (category: FormCategory) => void;
-}
-
-export const CategoryModal = (props: CategoryModalProps) => {
+export const CategoryModal = () => {
+  const dispatch = useDispatch();
   const [isVisible, setVisible] = useState(false);
 
   const showModal = () => {
     setVisible(true);
   };
 
+  const hideModal = () => {
+    setVisible(false);
+  };
+
   const onFinish = (categoryToAdd: FormCategory) => {
-    props.onAddCategory(categoryToAdd);
-    setVisible(false);
-  };
-
-  const handleOk = () => {
-    setVisible(false);
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
+    dispatch(addCategory(categoryToAdd));
+    hideModal();
   };
 
   return (
@@ -40,8 +35,8 @@ export const CategoryModal = (props: CategoryModalProps) => {
       </Button>
 
       <Modal
-      className={styles.CategoryModalStyles}
-        onCancel={handleCancel}
+        className={styles.CategoryModalStyles}
+        onCancel={hideModal}
         destroyOnClose={true}
         visible={isVisible}
         title="Добавить категорию"
@@ -64,14 +59,14 @@ export const CategoryModal = (props: CategoryModalProps) => {
               className={styles.okButton}
               type="primary"
               htmlType="submit"
-              onClick={handleOk}
+              onClick={hideModal}
             >
               Ok
             </Button>
             <Button
               className={styles.cancelButton}
               htmlType="button"
-              onClick={handleCancel}
+              onClick={hideModal}
             >
               Cancel
             </Button>
