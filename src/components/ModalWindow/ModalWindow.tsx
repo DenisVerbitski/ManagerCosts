@@ -7,6 +7,7 @@ import { DatePicker } from "antd";
 import ModalElement from "./interfaces/ModalElement";
 
 import styles from "./ModalWindow.less";
+import ModalFieldType from "./interfaces/ModalFieldType";
 
 interface ModalWindowProps {
   title: string;
@@ -88,24 +89,10 @@ export const ModalWindow = (props: ModalWindowProps) => {
     );
   };
 
-  const createFields = (): ReactElement[] => {
-    const modalFields: ReactElement[] = [];
-    fields.forEach((field, fieldIndex) => {
-      const fieldCreator = fieldTypeMap.get(field.type);
-
-      if (!fieldIndex) {
-        field.defaultFocus = true;
-      }
-
-      if (fieldCreator) {
-        modalFields.push(fieldCreator(field));
-      }
-    });
-
-    return modalFields;
-  };
-
-  const fieldTypeMap = new Map([
+  const fieldTypeMap = new Map<
+    ModalFieldType,
+    (field: ModalElement) => ReactElement
+  >([
     ["input", createInput],
     ["inputNumber", createInputNumber],
     ["datePicker", createDatePicker],
@@ -122,7 +109,15 @@ export const ModalWindow = (props: ModalWindowProps) => {
       title={title}
     >
       <Form onFinish={onFinish} initialValues={initialValues}>
-        {createFields()}
+        {fields.map((field, fieldIndex) => {
+          const fieldCreator = fieldTypeMap.get(field.type);
+
+          if (!fieldIndex) {
+            field.defaultFocus = true;
+          }
+
+          return fieldCreator && fieldCreator(field);
+        })}
         <Form.Item>
           <Button
             className={styles.okButton}

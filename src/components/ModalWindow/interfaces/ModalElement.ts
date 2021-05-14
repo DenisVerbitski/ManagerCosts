@@ -1,6 +1,8 @@
+import ModalFieldType from "./ModalFieldType";
+
 export default interface ModalElement {
   name: string;
-  type: "input" | "inputNumber" |"datePicker";
+  type: ModalFieldType;
   label: string;
   placeholder: string;
   dataType?: "text" | "number";
