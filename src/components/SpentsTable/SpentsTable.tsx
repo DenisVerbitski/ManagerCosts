@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectSpentsData } from "../../selectors/spentsData";
 import { Table } from "antd";
 
+import { selectSpentsData } from "../../selectors/spentsData";
 import DeleteButton from "./Actions/DeleteButton/DeleteButton";
 import Actions from "./Actions/Actions";
 import FormCategoryItem from "../CategoryItemModal/interfaces/FormCategoryItem";

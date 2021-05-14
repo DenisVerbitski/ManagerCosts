@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import moment from "moment";
+import { Store } from "rc-field-form/lib/interface";
 import { Form, Modal, Button, Input } from "antd";
 import { DatePicker } from "antd";
 
@@ -16,6 +17,8 @@ interface ModalWindowProps {
 }
 
 export const ModalWindow = (props: ModalWindowProps) => {
+  let initialValues: Store = {};
+
   const createInput = (field: ModalElement) => {
     const { label, name, placeholder, dataType, defaultFocus } = field;
 
@@ -40,10 +43,10 @@ export const ModalWindow = (props: ModalWindowProps) => {
 
   const createDatePicker = (field: ModalElement) => {
     const { name, label, placeholder } = field;
+    initialValues[name] = moment();
     return (
       <Form.Item
         name={name}
-        initialValue={moment()}
         rules={[
           {
             required: true,
@@ -92,7 +95,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
       footer={false}
       title="Введите данных о расходах"
     >
-      <Form onFinish={props.onFinish}>
+      <Form onFinish={props.onFinish} initialValues={initialValues}>
         {createFields()}
         <Form.Item>
           <Button

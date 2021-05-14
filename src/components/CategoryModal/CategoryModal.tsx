@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
-import FormCategory from "./interfaces/FormCategory";
 import { addCategory } from "../../reducers/spentsData";
+import FormCategory from "./interfaces/FormCategory";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
 import ModalElement from "../ModalWindow/interfaces/ModalElement";
 
