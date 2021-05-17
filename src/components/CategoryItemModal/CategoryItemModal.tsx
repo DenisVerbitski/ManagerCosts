@@ -69,7 +69,7 @@ export const CategoryItemModal = (props: CategoryItemModalProps) => {
 
   return (
     <div>
-      <Button className={styles.modalButton} type="text" onClick={showModal}>
+      <Button className={styles.itemModalButton} type="text" onClick={showModal}>
         <PlusOutlined />
       </Button>
 

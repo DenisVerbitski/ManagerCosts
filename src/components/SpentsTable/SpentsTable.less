@@ -1,15 +1,15 @@
 .margin {
   margin-top: 20px;
-  margin-bottom: 2px;
+  margin-bottom: 20px;
 }
 .itemDeleteButton {
   float: right;
 }
 .TableStyles {
-  width: 1000px;
   margin: auto;
   font-weight: 600;
   :global .ant-table-row-level-0 {
+    margin-top: 1rem;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.2);
     background-color: #5a9216;
     color: #c5e1a5;
@@ -31,6 +31,9 @@
   }
   :global .ant-table-tbody > tr > td {
     border-bottom: 1px solid #bef67a;
+  }
+  :global .ant-table-tbody > tr > td:hover {
+    background: unset;
   }
   :global .ant-table-tbody {
     background: #bef67a;

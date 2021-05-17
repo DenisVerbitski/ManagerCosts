@@ -1,31 +1,94 @@
-.modalButton {
-  background-color: #b7eb8f;
-  margin-top: 5px;
-  font-size: 15px;
-  font-weight: 600;
+.itemModalButton {
+  color: #c5e1a5;
+}
+.itemModalButton:hover {
+  background-color: #8bc34a;
+  color: #33691e;
 }
 .okButton {
+  background: #5a9216;
+  border-color: #5a9216;
+  color: #c5e1a5;
   float: right;
 }
+.okButton:hover {
+  background: #8bc34a;
+  color: #33691e;
+  border-color: #5a9216;
+}
 .cancelButton {
+  background: #5a9216;
+  border-color: #5a9216;
+  color: #c5e1a5;
   float: right;
   margin-right: 5px;
 }
-.ModalWindowStyles {
+.cancelButton:hover {
+  background: #8bc34a;
+  color: #33691e;
+  border-color: #5a9216;
+}
+.ItemModalStyles {
+  :global .ant-modal-header {
+    background: #5a9216;
+    border-bottom: 1px solid #5a9216;
+  }
+  :global {
+    .ant-modal-title,
+    .ant-modal-close {
+      color: #c5e1a5;
+    }
+  }
+  :global .ant-modal-close:hover {
+    color: #33691e;
+  }
   :global .ant-modal-body {
+    background: #bef67a;
     padding: 24px 24px 1px 24px;
   }
-  :global .ant-modal-header {
-    background: #b7eb8f;
-    border-bottom: 1px solid #f0f0f0;
+  :global {
+    .ant-input,
+    .ant-picker,
+    .ant-input-number {
+      border: 1px solid #5a9216;
+      background: #bef67a;
+    }
   }
-  :global .ant-modal-close {
-    color: black;
+  :global {
+    .ant-input,
+    .ant-picker,
+    .ant-input-number {
+      border: 1px solid #33691e;
+      background: #bef67a;
+      color: #33691e;
+    }
   }
-  :global(.ant-input, .ant-input-number) {
-    border: 1px solid #f0f0f0;
+  :global .ant-input-number-handler-up {
+    border-left: 1px solid #33691e;
+    border-bottom: 1px solid #33691e;
+    color: #33691e;
+    background-color: #bef67a;
   }
-  :global .ant-btn {
-    border-color: #f0f0f0;
+  :global .ant-input-number-handler-down {
+    border-left: 1px solid #33691e;
+    background-color: #bef67a;
   }
+  :global {
+    .ant-input-number-handler-up-inner,
+    .ant-input-number-handler-down-inner {
+      color: #33691e;
+    }
+  }
+  :global .ant-picker-clear {
+    background: #bef67a;
+  }
+  input::-webkit-input-placeholder {
+    color: #33691e;
+  }
+}
+.date {
+  color: #33691e;
+}
+.number {
+  width: 470px;
 }

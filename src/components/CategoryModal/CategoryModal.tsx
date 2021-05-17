@@ -41,7 +41,7 @@ export const CategoryModal = () => {
     <div>
       <Button
         icon={<PlusOutlined />}
-        className={styles.modalButton}
+        className={styles.categoryModalButton}
         type="text"
         onClick={showModal}
       >

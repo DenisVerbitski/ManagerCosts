@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Table } from "antd";
+import { Empty, Table } from "antd";
 
 import { selectSpentsData } from "../../selectors/spentsData";
 import DeleteButton from "./Actions/DeleteButton/DeleteButton";

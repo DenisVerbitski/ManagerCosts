@@ -57,6 +57,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
         ]}
       >
         <InputNumber
+          className={styles.number}
           autoFocus={defaultFocus}
           type={dataType}
           placeholder={placeholder}
@@ -125,14 +126,14 @@ export const ModalWindow = (props: ModalWindowProps) => {
             htmlType="submit"
             onClick={onHideModal}
           >
-            Ok
+            Oк
           </Button>
           <Button
             className={styles.cancelButton}
             htmlType="button"
             onClick={onHideModal}
           >
-            Cancel
+            Отмена
           </Button>
         </Form.Item>
       </Form>
