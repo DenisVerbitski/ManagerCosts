@@ -57,7 +57,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
         ]}
       >
         <InputNumber
-          className={styles.number}
+          className={styles.inputNumber}
           autoFocus={defaultFocus}
           type={dataType}
           placeholder={placeholder}

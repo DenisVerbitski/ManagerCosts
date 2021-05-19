@@ -48,21 +48,21 @@ export const CategoryItemModal = (props: CategoryItemModalProps) => {
     {
       name: "name",
       type: "input",
-      label: "Пожалуйста введите название заведения",
-      placeholder: "Название заведения",
+      label: "Введите название заведения",
+      placeholder: "Название",
       dataType: "text",
     },
     {
       name: "date",
       type: "datePicker",
-      label: "Пожалуйста введите дату",
+      label: "Введите дату",
       placeholder: "Дата",
     },
     {
       name: "spent",
       type: "inputNumber",
-      label: "Пожалуйста введите колличество потраченых денег",
-      placeholder: "0",
+      label: "Введите колличество потраченых денег",
+      placeholder: "Колличество потраченых денег в рублях",
       dataType: "number",
     },
   ];
@@ -75,7 +75,7 @@ export const CategoryItemModal = (props: CategoryItemModalProps) => {
 
       <ModalWindow
         onFinish={onFinish}
-        title="Добавить заведение"
+        title="Добавить расход"
         fields={fields}
         isVisible={isVisible}
         onHideModal={hideModal}

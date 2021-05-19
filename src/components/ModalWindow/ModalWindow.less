@@ -5,24 +5,17 @@
   background-color: #8bc34a;
   color: #33691e;
 }
-.okButton {
-  background: #5a9216;
-  border-color: #5a9216;
-  color: #c5e1a5;
-  float: right;
-}
-.okButton:hover {
-  background: #8bc34a;
-  color: #33691e;
-  border-color: #5a9216;
-}
+.okButton,
 .cancelButton {
   background: #5a9216;
   border-color: #5a9216;
   color: #c5e1a5;
   float: right;
+}
+.cancelButton {
   margin-right: 5px;
 }
+.okButton:hover,
 .cancelButton:hover {
   background: #8bc34a;
   color: #33691e;
@@ -45,14 +38,6 @@
   :global .ant-modal-body {
     background: #bef67a;
     padding: 24px 24px 1px 24px;
-  }
-  :global {
-    .ant-input,
-    .ant-picker,
-    .ant-input-number {
-      border: 1px solid #5a9216;
-      background: #bef67a;
-    }
   }
   :global {
     .ant-input,
@@ -89,6 +74,49 @@
 .date {
   color: #33691e;
 }
-.number {
-  width: 470px;
+.inputNumber {
+  width: 100%;
+}
+:global .ant-picker-header {
+  background: #5a9216;
+  border-bottom: 1px solid #5a9216;
+}
+:global {
+  .ant-picker-today-btn,
+  .ant-picker-header button {
+    color: #c5e1a5;
+  }
+}
+:global {
+  .ant-picker-today-btn:hover,
+  .ant-picker-header button:hover {
+    color: #33691e;
+  }
+}
+:global .ant-picker-body {
+  background: #bef67a;
+}
+:global {
+  .ant-picker-panel,
+  .ant-picker-footer {
+    background: #5a9216;
+    border-top: 1px solid #5a9216 !important;
+    border-bottom: 1px solid #5a9216;
+  }
+}
+:global {
+  .ant-picker-cell-inner:hover {
+    background: #5a9216 !important;
+    color: #c5e1a5;
+  }
+}
+:global {
+  .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+  .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+  .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner
+  {
+    background: #5a9216;
+    border: 1px solid #5a9216;
+    color: #c5e1a5;
+  }
 }
