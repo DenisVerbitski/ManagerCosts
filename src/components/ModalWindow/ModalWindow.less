@@ -7,7 +7,7 @@
 }
 .okButton,
 .cancelButton {
-  background: #5a9216;
+  background-color: #5a9216;
   border-color: #5a9216;
   color: #c5e1a5;
   float: right;
@@ -17,13 +17,13 @@
 }
 .okButton:hover,
 .cancelButton:hover {
-  background: #8bc34a;
+  background-color: #8bc34a;
   color: #33691e;
   border-color: #5a9216;
 }
 .ItemModalStyles {
   :global .ant-modal-header {
-    background: #5a9216;
+    background-color: #5a9216;
     border-bottom: 1px solid #5a9216;
   }
   :global {
@@ -36,7 +36,7 @@
     color: #33691e;
   }
   :global .ant-modal-body {
-    background: #bef67a;
+    background-color: #bef67a;
     padding: 24px 24px 1px 24px;
   }
   :global {
@@ -44,7 +44,7 @@
     .ant-picker,
     .ant-input-number {
       border: 1px solid #33691e;
-      background: #bef67a;
+      background-color: #bef67a;
       color: #33691e;
     }
   }
@@ -65,7 +65,7 @@
     }
   }
   :global .ant-picker-clear {
-    background: #bef67a;
+    background-color: #bef67a;
   }
   input::-webkit-input-placeholder {
     color: #33691e;
@@ -78,7 +78,7 @@
   width: 100%;
 }
 :global .ant-picker-header {
-  background: #5a9216;
+  background-color: #5a9216;
   border-bottom: 1px solid #5a9216;
 }
 :global {
@@ -94,29 +94,33 @@
   }
 }
 :global .ant-picker-body {
-  background: #bef67a;
+  background-color: #bef67a;
 }
 :global {
   .ant-picker-panel,
   .ant-picker-footer {
-    background: #5a9216;
-    border-top: 1px solid #5a9216 !important;
+    background-color: #5a9216;
+    border-top-color: #5a9216 !important ;
     border-bottom: 1px solid #5a9216;
   }
 }
 :global {
   .ant-picker-cell-inner:hover {
-    background: #5a9216 !important;
+    background-color: #5a9216 !important;
     color: #c5e1a5;
   }
 }
 :global {
   .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
   .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
-  .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner
-  {
-    background: #5a9216;
-    border: 1px solid #5a9216;
+  .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+    background-color: #5a9216;
     color: #c5e1a5;
+  }
+}
+:global {
+  .ant-picker-cell-in-view.ant-picker-cell-today,
+  .ant-picker-cell-inner::before {
+    border-color: #5a9216 !important;
   }
 }
