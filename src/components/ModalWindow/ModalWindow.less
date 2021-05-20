@@ -104,23 +104,31 @@
     border-bottom: 1px solid #5a9216;
   }
 }
+:global .ant-picker-cell-inner {
+  background-color: unset !important;
+}
+:global .ant-picker-cell-inner::before {
+  border-color: #5a9216 !important;
+}
+:global .ant-picker-cell-inner:hover {
+  background-color: #5a9216 !important;
+  color: #c5e1a5;
+}
 :global {
-  .ant-picker-cell-inner:hover {
-    background-color: #5a9216 !important;
+  .ant-picker-cell-disabled::before {
+    background-color: #c9fc8a;
+  }
+}
+:global {
+  .ant-picker-cell-in-view.ant-picker-cell-selected 
+    .ant-picker-cell-inner {
+    color: #33691e;
+  }
+}
+:global {
+  .ant-picker-cell-in-view.ant-picker-cell-selected
+    .ant-picker-cell-inner:hover {
     color: #c5e1a5;
   }
 }
-:global {
-  .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
-  .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
-  .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
-    background-color: #5a9216;
-    color: #c5e1a5;
-  }
-}
-:global {
-  .ant-picker-cell-in-view.ant-picker-cell-today,
-  .ant-picker-cell-inner::before {
-    border-color: #5a9216 !important;
-  }
-}
+

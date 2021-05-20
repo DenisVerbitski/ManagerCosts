@@ -21,6 +21,10 @@ export const ModalWindow = (props: ModalWindowProps) => {
   const { fields, isVisible, title, onFinish, onHideModal } = props;
   let initialValues: Store = {};
 
+  function disabledDate(current: any) {
+    return current && current > moment().endOf('day');
+  }
+
   const createInput = (field: ModalElement) => {
     const { label, name, placeholder, dataType, defaultFocus } = field;
 
@@ -81,6 +85,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
         ]}
       >
         <DatePicker
+          disabledDate={ disabledDate}
           autoFocus={defaultFocus}
           className={styles.date}
           placeholder={placeholder}

@@ -28,6 +28,10 @@
     background-color: #5a9216;
     border: 1px solid #5a9216;
   }
+  :global .ant-table-row-expand-icon:hover {
+    background-color: #8bc34a;
+    color: #33691e;
+  }
   :global .ant-table-tbody > tr.ant-table-row:hover > td {
     background-color: unset;
   }
@@ -65,4 +69,12 @@
 :global .ant-table-row-expand-icon {
   width: 18px;
   height: 18px;
+}
+:global {
+  .ant-table-row-expand-icon:hover,
+  .ant-table-row-expand-icon-collapsed:hover,
+  .ant-table-row-expand-icon:focus,
+  .ant-table-row-expand-icon-collapsed:focus {
+    color: unset;
+  }
 }
