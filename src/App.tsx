@@ -1,8 +1,7 @@
-import { Navbar } from "./components/PageHeader/Navbar";
-import { SpentsTable } from "./components/SpentsTable/SpentsTable";
-import React from "react";
 import { Layout } from "antd";
 
+import { Navbar } from "./components/PageHeader/Navbar";
+import { SpentsTable } from "./components/SpentsTable/SpentsTable";
 import { PageFooter } from "./components/PageFooter/PageFooter";
 
 import styles from "./App.less"

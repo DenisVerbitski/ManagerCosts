@@ -109,9 +109,10 @@ export const SpentsTable = () => {
   let locale = {
     emptyText: (
       <Empty
-        image="https://img.icons8.com/ios/452/file--v1.png"
+        image="https://static.thenounproject.com/png/1496940-200.png"
         imageStyle={{
-          height: 80,
+          marginLeft: 15,
+          height: 100,
         }}
         description={
           <span>

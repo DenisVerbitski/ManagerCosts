@@ -22,24 +22,22 @@
   border-color: #5a9216;
 }
 .ItemModalStyles {
-  :global .ant-modal-header {
-    background-color: #5a9216;
-    border-bottom: 1px solid #5a9216;
-  }
   :global {
+    .ant-modal-header {
+      background-color: #5a9216;
+      border-bottom: 1px solid #5a9216;
+    }
     .ant-modal-title,
     .ant-modal-close {
       color: #c5e1a5;
     }
-  }
-  :global .ant-modal-close:hover {
-    color: #33691e;
-  }
-  :global .ant-modal-body {
-    background-color: #bef67a;
-    padding: 24px 24px 1px 24px;
-  }
-  :global {
+    .ant-modal-close:hover {
+      color: #33691e;
+    }
+    .ant-modal-body {
+      background-color: #bef67a;
+      padding: 24px 24px 1px 24px;
+    }
     .ant-input,
     .ant-picker,
     .ant-input-number {
@@ -47,25 +45,28 @@
       background-color: #bef67a;
       color: #33691e;
     }
-  }
-  :global .ant-input-number-handler-up {
-    border-left: 1px solid #33691e;
-    border-bottom: 1px solid #33691e;
-    color: #33691e;
-    background-color: #bef67a;
-  }
-  :global .ant-input-number-handler-down {
-    border-left: 1px solid #33691e;
-    background-color: #bef67a;
-  }
-  :global {
+    .ant-input:hover,
+    .ant-picker:hover,
+    .ant-input-number:hover {
+      background-color: unset !important;
+    }
+    .ant-input-number-handler-wrap {
+      border-left: 1px solid #33691e;
+    }
+    .ant-input-number-handler-up,
+    .ant-input-number-handler-down {
+      background-color: #bef67a;
+    }
+    .ant-input-number-handler-down {
+      border-top: 1px solid #33691e;
+    }
     .ant-input-number-handler-up-inner,
     .ant-input-number-handler-down-inner {
       color: #33691e;
     }
-  }
-  :global .ant-picker-clear {
-    background-color: #bef67a;
+    .ant-picker-clear {
+      background-color: #bef67a;
+    }
   }
   input::-webkit-input-placeholder {
     color: #33691e;
@@ -77,58 +78,46 @@
 .inputNumber {
   width: 100%;
 }
-:global .ant-picker-header {
-  background-color: #5a9216;
-  border-bottom: 1px solid #5a9216;
-}
 :global {
+  .ant-picker-header {
+    background-color: #5a9216;
+    border-bottom: 1px solid #5a9216;
+  }
   .ant-picker-today-btn,
   .ant-picker-header button {
     color: #c5e1a5;
   }
-}
-:global {
   .ant-picker-today-btn:hover,
   .ant-picker-header button:hover {
     color: #33691e;
   }
-}
-:global .ant-picker-body {
-  background-color: #bef67a;
-}
-:global {
+  .ant-picker-body {
+    background-color: #bef67a;
+  }
   .ant-picker-panel,
   .ant-picker-footer {
     background-color: #5a9216;
     border-top-color: #5a9216 !important ;
     border-bottom: 1px solid #5a9216;
   }
-}
-:global .ant-picker-cell-inner {
-  background-color: unset !important;
-}
-:global .ant-picker-cell-inner::before {
-  border-color: #5a9216 !important;
-}
-:global .ant-picker-cell-inner:hover {
-  background-color: #5a9216 !important;
-  color: #c5e1a5;
-}
-:global {
+  .ant-picker-cell-inner {
+    background-color: unset !important;
+  }
+  .ant-picker-cell-inner::before {
+    border-color: #5a9216 !important;
+  }
+  .ant-picker-cell-inner:hover {
+    background-color: #5a9216 !important;
+    color: #c5e1a5;
+  }
   .ant-picker-cell-disabled::before {
     background-color: #c9fc8a;
   }
-}
-:global {
-  .ant-picker-cell-in-view.ant-picker-cell-selected 
-    .ant-picker-cell-inner {
+  .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
     color: #33691e;
   }
-}
-:global {
   .ant-picker-cell-in-view.ant-picker-cell-selected
     .ant-picker-cell-inner:hover {
     color: #c5e1a5;
   }
 }
-
