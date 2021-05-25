@@ -41,6 +41,7 @@
     .ant-input,
     .ant-picker,
     .ant-input-number {
+      box-shadow: none;
       border: 1px solid #33691e;
       background-color: #bef67a;
       color: #33691e;
@@ -67,6 +68,20 @@
     .ant-picker-clear {
       background-color: #bef67a;
     }
+    .ant-form-item-explain,
+    .ant-form-item-explain-error {
+      color: red;
+    }
+    .ant-form-item-has-error .ant-input:focus {
+      box-shadow: none;
+      border-color: red;
+    }
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    box-shadow: 0 0 0 20px #bef67a inset;
   }
   input::-webkit-input-placeholder {
     color: #33691e;
