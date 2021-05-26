@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import moment from "moment";
 import { Store } from "rc-field-form/lib/interface";
 import { Form, Modal, Button, Input, InputNumber } from "antd";
@@ -21,11 +21,16 @@ export const ModalWindow = (props: ModalWindowProps) => {
   const { fields, isVisible, title, onFinish, onHideModal } = props;
   let initialValues: Store = {};
 
+  const disabledDate = (current: any) => {
+    return current && current > moment().endOf("day");
+  };
+
   const createInput = (field: ModalElement) => {
-    const { label, name, placeholder, dataType, defaultFocus } = field;
+    const { label, name, placeholder, dataType, defaultFocus, key } = field;
 
     return (
       <Form.Item
+        key={key}
         name={name}
         rules={[
           {
@@ -44,10 +49,11 @@ export const ModalWindow = (props: ModalWindowProps) => {
   };
 
   const createInputNumber = (field: ModalElement) => {
-    const { label, name, placeholder, dataType, defaultFocus } = field;
+    const { label, name, placeholder, dataType, defaultFocus, key } = field;
 
     return (
       <Form.Item
+        key={key}
         name={name}
         rules={[
           {
@@ -57,6 +63,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
         ]}
       >
         <InputNumber
+          className={styles.inputNumber}
           autoFocus={defaultFocus}
           type={dataType}
           placeholder={placeholder}
@@ -67,10 +74,11 @@ export const ModalWindow = (props: ModalWindowProps) => {
   };
 
   const createDatePicker = (field: ModalElement) => {
-    const { name, label, placeholder, defaultFocus } = field;
+    const { name, label, placeholder, defaultFocus, key } = field;
     initialValues[name] = moment();
     return (
       <Form.Item
+        key={key}
         name={name}
         rules={[
           {
@@ -80,6 +88,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
         ]}
       >
         <DatePicker
+          disabledDate={disabledDate}
           autoFocus={defaultFocus}
           className={styles.date}
           placeholder={placeholder}
@@ -112,6 +121,7 @@ export const ModalWindow = (props: ModalWindowProps) => {
         {fields.map((field, fieldIndex) => {
           const fieldCreator = fieldTypeMap.get(field.type);
 
+          field.key = fieldIndex;
           if (!fieldIndex) {
             field.defaultFocus = true;
           }
@@ -125,14 +135,14 @@ export const ModalWindow = (props: ModalWindowProps) => {
             htmlType="submit"
             onClick={onHideModal}
           >
-            Ok
+            Oк
           </Button>
           <Button
             className={styles.cancelButton}
             htmlType="button"
             onClick={onHideModal}
           >
-            Cancel
+            Отмена
           </Button>
         </Form.Item>
       </Form>

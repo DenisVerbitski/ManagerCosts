@@ -1,31 +1,138 @@
-.modalButton {
-  background-color: #b7eb8f;
-  margin-top: 5px;
-  font-size: 15px;
-  font-weight: 600;
+.itemModalButton {
+  color: #c5e1a5;
 }
-.okButton {
+.itemModalButton:hover {
+  background-color: #8bc34a;
+  color: #33691e;
+}
+.okButton,
+.cancelButton {
+  background-color: #5a9216;
+  border-color: #5a9216;
+  color: #c5e1a5;
   float: right;
 }
 .cancelButton {
-  float: right;
   margin-right: 5px;
 }
-.ModalWindowStyles {
-  :global .ant-modal-body {
-    padding: 24px 24px 1px 24px;
+.okButton:hover,
+.cancelButton:hover {
+  background-color: #8bc34a;
+  color: #33691e;
+  border-color: #5a9216;
+}
+.ItemModalStyles {
+  :global {
+    .ant-modal-header {
+      background-color: #5a9216;
+      border-bottom: 1px solid #5a9216;
+    }
+    .ant-modal-title,
+    .ant-modal-close {
+      color: #c5e1a5;
+    }
+    .ant-modal-close:hover {
+      color: #33691e;
+    }
+    .ant-modal-body {
+      background-color: #bef67a;
+      padding: 24px 24px 1px 24px;
+    }
+    .ant-input,
+    .ant-picker,
+    .ant-input-number {
+      box-shadow: none;
+      border: 1px solid #33691e;
+      background-color: #bef67a;
+      color: #33691e;
+    }
+    .ant-input:hover,
+    .ant-picker:hover,
+    .ant-input-number:hover {
+      background-color: unset !important;
+    }
+    .ant-input-number-handler-wrap {
+      border-left: 1px solid #33691e;
+    }
+    .ant-input-number-handler-up,
+    .ant-input-number-handler-down {
+      background-color: #bef67a;
+    }
+    .ant-input-number-handler-down {
+      border-top: 1px solid #33691e;
+    }
+    .ant-input-number-handler-up-inner,
+    .ant-input-number-handler-down-inner {
+      color: #33691e;
+    }
+    .ant-picker-clear {
+      background-color: #bef67a;
+    }
+    .ant-form-item-explain,
+    .ant-form-item-explain-error {
+      color: red;
+    }
+    .ant-form-item-has-error .ant-input:focus {
+      box-shadow: none;
+      border-color: red;
+    }
   }
-  :global .ant-modal-header {
-    background: #b7eb8f;
-    border-bottom: 1px solid #f0f0f0;
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s;
   }
-  :global .ant-modal-close {
-    color: black;
+  input::-webkit-input-placeholder {
+    color: #33691e;
   }
-  :global(.ant-input, .ant-input-number) {
-    border: 1px solid #f0f0f0;
+}
+.date {
+  color: #33691e;
+}
+.inputNumber {
+  width: 100%;
+}
+:global {
+  .ant-picker-header {
+    background-color: #5a9216;
+    border-bottom: 1px solid #5a9216;
   }
-  :global .ant-btn {
-    border-color: #f0f0f0;
+  .ant-picker-today-btn,
+  .ant-picker-header button {
+    color: #c5e1a5;
+  }
+  .ant-picker-today-btn:hover,
+  .ant-picker-header button:hover {
+    color: #33691e;
+  }
+  .ant-picker-body {
+    background-color: #bef67a;
+  }
+  .ant-picker-panel,
+  .ant-picker-footer {
+    background-color: #5a9216;
+    border-top-color: #5a9216 !important ;
+    border-bottom: 1px solid #5a9216;
+  }
+  .ant-picker-cell-inner {
+    background-color: unset !important;
+  }
+  .ant-picker-cell-inner::before {
+    border-color: #5a9216 !important;
+  }
+  .ant-picker-cell-inner:hover {
+    background-color: #5a9216 !important;
+    color: #c5e1a5;
+  }
+  .ant-picker-cell-disabled::before {
+    background-color: #c9fc8a;
+  }
+  .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+    color: #33691e;
+  }
+  .ant-picker-cell-in-view.ant-picker-cell-selected
+    .ant-picker-cell-inner:hover {
+    color: #c5e1a5;
   }
 }

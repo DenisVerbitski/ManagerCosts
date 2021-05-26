@@ -1,5 +1,7 @@
 import { PageHeader } from "antd";
+
 import { CategoryModal } from "../CategoryModal/CategoryModal";
+
 import styles from "./Navbar.less";
 
 export const Navbar = () => {

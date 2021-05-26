@@ -7,4 +7,5 @@ export default interface ModalElement {
   placeholder: string;
   dataType?: "text" | "number";
   defaultFocus?: boolean;
+  key?: number;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Table } from "antd";
+import { Empty, Table } from "antd";
 
 import { selectSpentsData } from "../../selectors/spentsData";
 import DeleteButton from "./Actions/DeleteButton/DeleteButton";
@@ -45,10 +45,12 @@ export const SpentsTable = () => {
       spent: Number(spent).toFixed(2) + " " + CURRENCY_BYN,
       key: indexOfItemInCategory,
       actionButtons: (
-        <DeleteButton
-          indexOfCategory={indexOfCategory}
-          indexOfItemInCategory={indexOfItemInCategory}
-        />
+        <div className={styles.itemDeleteButton}>
+          <DeleteButton
+            indexOfCategory={indexOfCategory}
+            indexOfItemInCategory={indexOfItemInCategory}
+          />
+        </div>
       ),
     };
     return categoryItem;
@@ -104,11 +106,29 @@ export const SpentsTable = () => {
       width: "1%",
     },
   ];
-
+  let locale = {
+    emptyText: (
+      <Empty
+        image="https://i.ibb.co/1J3VNZ8/image.png"
+        imageStyle={{
+          marginLeft: 15,
+          height: 100,
+        }}
+        description={
+          <span>
+            Нет расходов
+          </span>
+        }
+      />
+    ),
+  };
   return (
     <div className={styles.margin}>
       <Table
-        expandable={{ childrenColumnName: "items" }}
+        locale={locale}
+        expandable={{
+          childrenColumnName: "items",
+        }}
         className={styles.TableStyles}
         showHeader={false}
         dataSource={tableData}

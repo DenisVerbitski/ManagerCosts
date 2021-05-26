@@ -31,8 +31,8 @@ export const CategoryModal = () => {
     {
       name: "name",
       type: "input",
-      label: "Пожалуйста введите категорию",
-      placeholder: "Название категории",
+      label: "Введите категорию",
+      placeholder: "Название",
       dataType: "text",
     },
   ];
@@ -41,7 +41,7 @@ export const CategoryModal = () => {
     <div>
       <Button
         icon={<PlusOutlined />}
-        className={styles.modalButton}
+        className={styles.categoryModalButton}
         type="text"
         onClick={showModal}
       >
