@@ -1,0 +1,5 @@
+{
+  "serverPort" : 5000,
+  "dbUrl": "mongodb+srv://Admin:f00RwyRsFepOfIZu@managercosts.rkyfa.mongodb.net/ManagerCosts?retryWrites=true&w=majority",
+  "secretKey": "mern-secket-key"
+}
